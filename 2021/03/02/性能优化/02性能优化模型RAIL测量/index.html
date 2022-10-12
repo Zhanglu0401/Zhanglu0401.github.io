@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+  
+
+    <head>
+      <meta charset="utf-8" />
+        
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title>前端性能优化-02 |  茶九</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="/favicon.ico" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      
+<link rel="stylesheet" href="/css/fonts/remixicon.css">
+
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.staticfile.org/pace/1.2.4/pace.min.js"></script>
+       
+ 
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bulma@5.0.1/bulma.min.css"
+      />
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+
+      <!-- mermaid -->
+      
+      <style>
+        .swal2-styled.swal2-confirm {
+          font-size: 1.6rem;
+        }
+      </style>
+    <link rel="alternate" href="/atom.xml" title="茶九" type="application/atom+xml">
+</head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      <canvas class="fireworks"></canvas>
+      <style>
+        .fireworks {
+          position: fixed;
+          left: 0;
+          top: 0;
+          z-index: 99999;
+          pointer-events: none;
+        }
+      </style>
+      
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-性能优化/02性能优化模型RAIL测量"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  前端性能优化-02
+</h1>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/03/02/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/02%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%A8%A1%E5%9E%8BRAIL%E6%B5%8B%E9%87%8F/" class="article-date">
+  <time datetime="2021-03-02T12:49:27.000Z" itemprop="datePublished">2021-03-02</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">前端性能优化</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> Word count:</span>
+            <span class="post-count">543</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> Reading time≈</span>
+            <span class="post-count">1 min</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h2 id="什么是RAIL："><a href="#什么是RAIL：" class="headerlink" title="什么是RAIL："></a>什么是RAIL：</h2><p>缩写每一个字母表示一个性能指标</p>
+<p>Response：响应  对用户而言用户点击有没有即使访问</p>
+<p>Animation：动画 给用户的体验好。会不会出现卡顿</p>
+<p>Idie：空闲 有足够的空闲时间才能够进行响应交互   不让他始终处于繁忙的时间，不然无法处理其他请求</p>
+<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427100359004.png" alt="image-20220427100359004"></p>
+<p>Load：加载 资源网络加载的时间</p>
+<p><strong>RAIL目标</strong></p>
+<p><strong>评估指标</strong></p>
+<p>响应：处理时间应在50ms以内完成</p>
+<p>动画：没10ms产生一帧</p>
+<p>空闲：尽可能增加空闲时间</p>
+<p>加载：在5s内完成内容加载并可以交互</p>
+<p>逐步发现问题解决问题</p>
+<p>性能测量工具</p>
+<p>Chrome DevTools 开发者调试工具，性能评测</p>
+<p>Lighthouse 网站整体质量评估</p>
+<p>WebPageTest 多测量地点、全面行能报告（通过 它的问斩对自己的网站就行进行评估）</p>
+<h2 id="WenPageTest"><a href="#WenPageTest" class="headerlink" title="WenPageTest"></a><strong>WenPageTest</strong></h2><p>webpagetest.org</p>
+<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427101136898.png" alt="image-20220427101136898"></p>
+<p>用户首次方位  第二次访问  （第一次对一些静态资源做缓存）</p>
+<p>录视频</p>
+<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427101340209.png" alt="image-20220427101340209"></p>
+<p>测试结果：</p>
+<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427101426225.png" alt="image-20220427101426225"></p>
+<p>第一次加载，首屏渲染，</p>
+<p>speed 速度指数等</p>
+<p>图片并行加载  时间有加载最长时间决定</p>
+<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427103510108.png" alt="image-20220427103510108"></p>
+<p>高亮（重定向了）  可以优化  直接去访问重定向后的位置</p>
+<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427103527654.png" alt="image-20220427103527654"></p>
+<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427103716493.png" alt="image-20220427103716493"></p>
+<p>前提：docker</p>
+<p>docker pull webpagetest&#x2F;server</p>
+<p>docker pull webpagetest&#x2F;a</p>
+<p>docker run -d -p 4000:80 webpagetest&#x2F;server</p>
+<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427103841249.png" alt="image-20220427103841249"></p>
+<p>自定义镜像</p>
+<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427103951183.png" alt="image-20220427103951183"></p>
+<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427103923723.png" alt="image-20220427103923723"></p>
+<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427103940202.png" alt="image-20220427103940202"></p>
+<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427104025309.png" alt="image-20220427104025309"></p>
+<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427104016148.png" alt="image-20220427104016148"></p>
+<p>打包</p>
+<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427104104578.png" alt="image-20220427104104578"></p>
+<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427104110269.png" alt="image-20220427104110269"></p>
+<p>这样就可以本地测试了。</p>
+<h2 id="Lighthouse"><a href="#Lighthouse" class="headerlink" title="Lighthouse"></a>Lighthouse</h2><p>npm install -g lighthouse</p>
+<p>lighthouse 测试网站地址</p>
+<p>自动打开一个浏览器窗口</p>
+<p>生成而是报告到本地</p>
+<p>打开即可查看</p>
+<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427104412546.png" alt="image-20220427104412546"></p>
+<p>第一个有意义的内容</p>
+<p>什么时候用户可以交互了</p>
+<p>用户访问过程截屏。</p>
+<p>Opportunity：告诉我们还可以做些什么做到了可以提升那些多长时间</p>
+<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427104938078.png" alt="image-20220427104938078"></p>
+<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427105002256.png" alt="image-20220427105002256"></p>
+<p>可以指定什么样的资源不进行加载。</p>
+<h2 id="Chrome-devtool调试"><a href="#Chrome-devtool调试" class="headerlink" title="Chrome devtool调试"></a>Chrome devtool调试</h2><p>Network：</p>
+<p>资源名称  大小   耗时</p>
+<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427133838888.png" alt="image-20220427133838888"></p>
+<p>对请求资源进行压缩在返回前端</p>
+<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427134024090.png" alt="image-20220427134024090"></p>
+<p>实际大小 parse  1.4MB   网络传输（index）55kb</p>
+<p>Performance：</p>
+<p>开始出现性能分析：可以定位出导致长任务（耗费时间长）的方法。</p>
+<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427134236511.png" alt="image-20220427134236511"></p>
+<p>主线程任务。</p>
+<p>Disabel cache缓存。 Online：选择网络</p>
+<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427134610044.png" alt="image-20220427134610044"></p>
+<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427134719082.png" alt="image-20220427134719082"></p>
+<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220427134737203.png" alt="image-20220427134737203"></p>
+ 
+      <!-- reward -->
+      
+      <div id="reword-out">
+        <div id="reward-btn">
+          Donate
+        </div>
+      </div>
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>Copyright： </strong>
+          
+          Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source.
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2021/03/02/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/02%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%A8%A1%E5%9E%8BRAIL%E6%B5%8B%E9%87%8F/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BC%98%E5%8C%96/" rel="tag">优化</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2021/03/09/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/03%E6%80%A7%E8%83%BD%E6%B5%8B%E9%87%8FAPI%EF%BC%88web%E6%8F%90%E4%BE%9B%EF%BC%8C%E5%8A%A8%E6%80%81%E6%B5%8B%E9%87%8F%EF%BC%89/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            前端性能优化-03
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2021/02/26/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/01%E9%A1%B9%E7%9B%AE%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%A6%82%E8%BF%B0/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">前端性能优化-01</div>
+      </a>
+    
+  </nav>
+
+  
+   
+    
+    <script src="https://cdn.staticfile.org/twikoo/1.4.18/twikoo.all.min.js"></script>
+    <div id="twikoo" class="twikoo"></div>
+    <script>
+        twikoo.init({
+            envId: ""
+        })
+    </script>
+ 
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2017-2022
+        <i class="ri-heart-fill heart_icon"></i> 茶九
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>Visitors:<span id="busuanzi_value_site_uv"></span></span>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>Views:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>    
+    </main>
+    <div class="float_btns">
+      <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+    </div>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/茶九.png" alt="茶九"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-3.6.0.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
+
+<script src="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.staticfile.org/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/default-skin/default-skin.min.css">
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+ 
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+ 
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<script src="https://cdn.staticfile.org/animejs/3.2.1/anime.min.js"></script>
+
+<script src="/js/clickBoom1.js"></script>
+ 
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.staticfile.org/clipboard.js/2.0.10/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+ 
+<script src="/js/dz.js"></script>
+ 
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "forest" });
+  }
+</script>
+
+
+    
+    
+
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+  
+
+    <head>
+      <meta charset="utf-8" />
+        
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title>移动端适配 |  茶九</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="/favicon.ico" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      
+<link rel="stylesheet" href="/css/fonts/remixicon.css">
+
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.staticfile.org/pace/1.2.4/pace.min.js"></script>
+       
+ 
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bulma@5.0.1/bulma.min.css"
+      />
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+
+      <!-- mermaid -->
+      
+      <style>
+        .swal2-styled.swal2-confirm {
+          font-size: 1.6rem;
+        }
+      </style>
+    <link rel="alternate" href="/atom.xml" title="茶九" type="application/atom+xml">
+</head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      <canvas class="fireworks"></canvas>
+      <style>
+        .fireworks {
+          position: fixed;
+          left: 0;
+          top: 0;
+          z-index: 99999;
+          pointer-events: none;
+        }
+      </style>
+      
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-html+css+js+ts/1-移动端布局适配"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  移动端适配
+</h1>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2018/02/05/html+css+js+ts/1-%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%B8%83%E5%B1%80%E9%80%82%E9%85%8D/" class="article-date">
+  <time datetime="2018-02-05T07:11:47.000Z" itemprop="datePublished">2018-02-05</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a> / <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/%E7%A7%BB%E5%8A%A8%E7%AB%AF/">移动端</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> Word count:</span>
+            <span class="post-count">1.7k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> Reading time≈</span>
+            <span class="post-count">7 min</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h2 id="一、为什么要做适配"><a href="#一、为什么要做适配" class="headerlink" title="一、为什么要做适配"></a>一、为什么要做适配</h2><ul>
+<li>为了适应各种移动端设备，完美呈现应有的布局效果</li>
+<li>各个移动端设备，分辨率大小不一致，网页想铺满整个屏幕，并在各种分辨下等比缩放</li>
+</ul>
+<h2 id="二、适配方案"><a href="#二、适配方案" class="headerlink" title="二、适配方案"></a>二、适配方案</h2><ul>
+<li>固定高度，宽度百分比适配-布局非常均匀，适合百分比布局</li>
+<li>固定宽度，改变缩放比例适配-什么情况都可以</li>
+<li><code>Rem</code>适配</li>
+<li>像素比适配</li>
+</ul>
+<h2 id="三、单位"><a href="#三、单位" class="headerlink" title="三、单位"></a>三、单位</h2><ul>
+<li><code>em</code>根据元素自身的字体大小计算,元素自身 <code>16px</code> <code>1em=16px</code></li>
+<li><code>Rem</code> <code>R -&gt; root</code> 根节点( <code>html</code> ) 根据<code>html</code>的字体大小计算其他元素尺寸</li>
+</ul>
+<h2 id="四、百分比适配-常用"><a href="#四、百分比适配-常用" class="headerlink" title="四、百分比适配(常用)"></a>四、百分比适配(常用)</h2><blockquote>
+<p>固定高度，宽度百分比适配</p>
+</blockquote>
+<ul>
+<li>根据设置的大小去设置高度，单位可以用<code>px</code> 百分比 <code>auto</code></li>
+<li>常用<code>Flex</code>布局</li>
+<li>百分比宽度</li>
+</ul>
+<blockquote>
+<p>以<code>640</code>设计稿为例，在外层容器上设置最大以及最小的宽</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#wrapper &#123;</span><br><span class="line">    max-width: 640px; /*设置设计稿的宽度*/</span><br><span class="line">    min-width: 300px;</span><br><span class="line">    margin: 0 auto;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>后面的区块布局都用百分比，具体元素大小用<code>px</code>计算</p>
+</blockquote>
+<ul>
+<li>也就是宽度用百分比，高度用<code>px</code></li>
+<li>高度以及图片不要定死，让它自动撑开</li>
+</ul>
+<h2 id="五、Rem适配-常用"><a href="#五、Rem适配-常用" class="headerlink" title="五、Rem适配(常用)"></a>五、Rem适配(常用)</h2><ul>
+<li>根据屏幕的分辨率动态设置<code>html</code>的文字大小，达到等比缩放的功能</li>
+<li>保证<code>html</code>最终算出来的字体大小，不能小于<code>12px</code></li>
+<li>在不同的移动端显示不同的元素比例效果</li>
+<li>如果<code>html</code>的<code>font-size:20px</code>的时候，那么此时的<code>1rem = 20px</code></li>
+<li>把设计图的宽度分成多少分之一，根据实际情况</li>
+<li><code>rem</code>做盒子的宽度，<code>viewport</code>缩放</li>
+</ul>
+<blockquote>
+<p><code>head</code>加入常见的<code>meta</code>属性</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name=&quot;format-detection&quot; content=&quot;telephone=no&quot;&gt;</span><br><span class="line">&lt;meta name=&quot;apple-mobile-web-app-capable&quot; content=&quot;yes&quot;&gt;</span><br><span class="line">&lt;meta name=&quot;apple-mobile-web-app-status-bar-style&quot; content=&quot;black&quot;&gt;</span><br><span class="line">&lt;!--这个是关键--&gt;</span><br><span class="line">&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0，minimum-scale=1.0&quot;&gt;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>把这段代码加入<code>head</code>中的<code>script</code>预先加载</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">// rem适配用这段代码动态计算html的font-size大小</span><br><span class="line">(function(win) &#123;</span><br><span class="line">    var docEl = win.document.documentElement;</span><br><span class="line">    var timer = &#x27;&#x27;;</span><br><span class="line"></span><br><span class="line">    function changeRem() &#123;</span><br><span class="line">        var width = docEl.getBoundingClientRect().width;</span><br><span class="line">        if (width &gt; 750) &#123; // 750是设计稿大小</span><br><span class="line">            width = 750;</span><br><span class="line">        &#125;</span><br><span class="line">        var fontS = width / 10; // 把设备宽度十等分 1rem=10px</span><br><span class="line">        docEl.style.fontSize = fontS + &quot;px&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">    win.addEventListener(&quot;resize&quot;, function() &#123;</span><br><span class="line">        clearTimeout(timer);</span><br><span class="line">        timer = setTimeout(changeRem, 30);</span><br><span class="line">    &#125;, false);</span><br><span class="line">    win.addEventListener(&quot;pageshow&quot;, function(e) &#123;</span><br><span class="line">        if (e.persisted) &#123; //清除缓存</span><br><span class="line">            clearTimeout(timer);</span><br><span class="line">            timer = setTimeout(changeRem, 30);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;, false);</span><br><span class="line">    changeRem();</span><br><span class="line">&#125;)(window)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>或者使用淘宝提供的库 <a target="_blank" rel="noopener" href="https://github.com/amfe/lib-flexible">https://github.com/amfe/lib-flexible</a></li>
+</ul>
+<p><strong>布局细节</strong></p>
+<ul>
+<li>结构用<code>section</code>区块划分更语义化</li>
+<li>然后在<code>body</code>设置宽度</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">body &#123;</span><br><span class="line">    width: 10rem;</span><br><span class="line">    margin: auto;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>后面的区块都以百分比布局</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;wrapper&quot;&gt;</span><br><span class="line">   &lt;header&gt;&lt;header&gt;</span><br><span class="line">   &lt;section&gt;&lt;section&gt;</span><br><span class="line">   &lt;section&gt;&lt;section&gt;</span><br><span class="line">   &lt;section&gt;&lt;section&gt;</span><br><span class="line">   &lt;section&gt;&lt;section&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">section,</span><br><span class="line">header &#123;</span><br><span class="line">    width: 100%;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>把视觉稿中的 px 转换成 rem</strong></p>
+<blockquote>
+<p>首先，目前日常工作当中，视觉设计师给到前端开发人员手中的视觉稿尺寸一般是基于 <code>640px</code> 、 <code>750px</code> 以及 <code>1125px</code> 宽度为准。甚至为什么？大家应该懂的（考虑<code>Retina</code>屏）</p>
+</blockquote>
+<blockquote>
+<p>假定设计稿的大小为<code>750</code>，那么我们则将整个图分成<code>10</code>等份来看。&#96;&#96; 对应的 <code>font-size</code>为<code>75px</code></p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">html&#123;</span><br><span class="line">	font-size: 75px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>这样一来，对于视觉稿上的元素尺寸换算，只需要原始的 <code>px</code>值 除以 <code>rem</code>基准值 即可</li>
+</ul>
+<blockquote>
+<p>那么，我们现在就可以比对设计稿，比如设计稿中，有一个<code>div</code>元素，宽度，高度都为<code>20px</code>,那么我们这样写即可（可以用 <code>markman</code>标准设计稿的元素大小）</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">div &#123;</span><br><span class="line">	height: 0.27rem; /*20/75*/</span><br><span class="line">	width: 0.27rem;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>动态计算的<code>rem</code>最后会帮我们动态计算元素在不同屏幕下的宽高</li>
+<li>对于设计稿上的每个元素的尺寸在设计稿大小已知的时候，我们需要测量出，然后在用测量的宽高除以设计稿<code>750</code>的十分之一也就是<code>75</code>,得到我们想要的<code>rem</code>。而<code>rem</code>是根据屏幕动态变化的，也就达到了适配的效果。也就是同一套设计稿运用在不同的设备上。</li>
+</ul>
+<blockquote>
+<p>比如当我们切换到<code>320</code>设备大小的时候，这时候<code>1rem=32px;</code> <code>div</code>的像素实际是<code>0.27*32=8.64px``0.27</code>是我们在已知设计稿是<code>750</code>的情况下计算出来的，<code>rem</code>用来动态计算而已</p>
+</blockquote>
+<ul>
+<li>对于<code>margin</code> <code>padding</code> <code>line-height</code> <code>width</code> <code>height</code>使用<code>rem</code>计算</li>
+</ul>
+<p><strong>如何快速计算</strong></p>
+<blockquote>
+<p>在实际生产当中，如果每一次计算 <code>px</code> 转换 <code>rem</code> ，或许会觉得非常麻烦</p>
+</blockquote>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/flashlizi/cssrem"><code>CSSREM</code></a> 是一个<code>CSS</code>的 <code>px</code> 值转 <code>rem</code> 值的<code>Sublime Text3</code>自动完成插件</li>
+<li>插件效果</li>
+</ul>
+<p><img src="https://github.com/poetries/cssrem/raw/master/cssrem.gif" alt="img"></p>
+<blockquote>
+<p>插件使用方法</p>
+</blockquote>
+<ul>
+<li><p>安装</p>
+<ul>
+<li>下载本项目，比如：git clone <a target="_blank" rel="noopener" href="https://github.com/flashlizi/cssrem">https://github.com/flashlizi/cssrem</a></li>
+<li>进入<code>packages</code>目录：<code>Sublime Text</code> -&gt; <code>Preferences</code> -&gt; <code>Browse Packages</code>…</li>
+<li>复制下载的<code>cssrem</code>目录到刚才的packges目录里。</li>
+<li>重启<code>Sublime Text</code></li>
+</ul>
+</li>
+<li><p>配置参数</p>
+<ul>
+<li><p>参数配置文件：<code>Sublime Text -&gt; Preferences -&gt; Package Settings -&gt; cssrem</code></p>
+</li>
+<li><p><code>px_to_rem</code> - <code>px</code>转<code>rem</code>的单位比例，默认为<code>40</code>【根据设计稿来设置，如设计稿<code>750</code>，我们取十分之一即<code>75</code>】。</p>
+</li>
+<li><p><code>max_rem_fraction_length</code> - <code>px</code>转<code>rem</code>的小数部分的最大长度。默认为<code>6</code>。</p>
+</li>
+<li><p><code>available_file_types</code> - 启用此插件的文件类型。默认为：[“<code>.css</code>“, “<code>.less</code>“, “<code>.sass</code>“]。</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>文字适配的解决方案</strong></p>
+<ul>
+<li>对于一些标题性的文字，我们依然可以用<code>rem</code>。让他随着屏幕来进行缩放，因为标题性文字一般较大，而较大的文字，点阵对其影响就越小。这样，即使出现奇怪的尺寸，也能够让字体得到很好的渲染。</li>
+<li>对于一些正文内容的文字（即站在使用者的角度，你不希望他进行缩放的文字）。我们采用<code>px</code>来进行处理</li>
+</ul>
+<h2 id="六、缩放比适配"><a href="#六、缩放比适配" class="headerlink" title="六、缩放比适配"></a>六、缩放比适配</h2><blockquote>
+<p>固定宽度，改变缩放比例适配</p>
+</blockquote>
+<ul>
+<li>设计图的宽度就是网页显示的宽度</li>
+<li>改变视口的缩放比例</li>
+<li>页面宽度固定死</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">// 缩放比例适配方案--用这个代码 </span><br><span class="line">var width = window.screen.width,</span><br><span class="line">    fixedW = 320, //设计稿宽度的一半</span><br><span class="line">    scale = width / fixedW, // 缩放比例</span><br><span class="line">    meta = document.createElement(&#x27;meta&#x27;),</span><br><span class="line">    metaAttr = &#123;</span><br><span class="line">        name : &#x27;viewport&#x27;,</span><br><span class="line">        content : &#x27;width=&#x27;+fixedW+&#x27;, initial-scale=&#x27;+scale+&#x27;, maximum-scale=&#x27;+scale+&#x27;, user-scalable=0&#x27;</span><br><span class="line">    &#125;;</span><br><span class="line">    for (var key in metaAttr) &#123;</span><br><span class="line">        meta[key] = metaAttr[key];</span><br><span class="line">    &#125;</span><br><span class="line">    document.head.appendChild(meta);</span><br></pre></td></tr></table></figure>
+
+<h2 id="七、像素比适配"><a href="#七、像素比适配" class="headerlink" title="七、像素比适配"></a>七、像素比适配</h2><ul>
+<li><code>window.devicePixelRatio</code></li>
+<li>物理像素是手机屏幕分辨率</li>
+<li>独立像素 指<code>css</code>像素 屏幕宽度</li>
+<li>像素比 &#x3D; 物理像素 &#x2F; <code>css宽度</code></li>
+<li>获取设备的像素比 <code>window.devicePixelRatio</code></li>
+</ul>
+<h2 id="八、小结"><a href="#八、小结" class="headerlink" title="八、小结"></a>八、小结</h2><blockquote>
+<p>关于移动端布局方案有很多，<code>rem</code>和百分比运用最多的</p>
+</blockquote>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://ymblog.net/2015/07/01/%E7%A7%BB%E5%8A%A8%E5%89%8D%E7%AB%AFmeta%E6%A0%87%E7%AD%BE%E8%BD%AC/">http://ymblog.net/2015/07/01/移动前端meta标签转/</a>)</li>
+</ul>
+ 
+      <!-- reward -->
+      
+      <div id="reword-out">
+        <div id="reward-btn">
+          Donate
+        </div>
+      </div>
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>Copyright： </strong>
+          
+          Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source.
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2018/02/05/html+css+js+ts/1-%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%B8%83%E5%B1%80%E9%80%82%E9%85%8D/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/html/" rel="tag">html</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF/" rel="tag">移动端</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2018/02/07/html+css+js+ts/1-%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            移动端像素比调试
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2018/02/02/html+css+js+ts/1-flex/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">flex布局</div>
+      </a>
+    
+  </nav>
+
+  
+   
+    
+    <script src="https://cdn.staticfile.org/twikoo/1.4.18/twikoo.all.min.js"></script>
+    <div id="twikoo" class="twikoo"></div>
+    <script>
+        twikoo.init({
+            envId: ""
+        })
+    </script>
+ 
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2017-2022
+        <i class="ri-heart-fill heart_icon"></i> 茶九
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>Visitors:<span id="busuanzi_value_site_uv"></span></span>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>Views:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>    
+    </main>
+    <div class="float_btns">
+      <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+    </div>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/茶九.png" alt="茶九"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-3.6.0.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
+
+<script src="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.staticfile.org/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/default-skin/default-skin.min.css">
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+ 
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+ 
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<script src="https://cdn.staticfile.org/animejs/3.2.1/anime.min.js"></script>
+
+<script src="/js/clickBoom1.js"></script>
+ 
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.staticfile.org/clipboard.js/2.0.10/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+ 
+<script src="/js/dz.js"></script>
+ 
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "forest" });
+  }
+</script>
+
+
+    
+    
+
+  </div>
+</body>
+
+</html>

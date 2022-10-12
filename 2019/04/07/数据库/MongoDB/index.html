@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+  
+
+    <head>
+      <meta charset="utf-8" />
+        
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title>mongodb |  茶九</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="/favicon.ico" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      
+<link rel="stylesheet" href="/css/fonts/remixicon.css">
+
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.staticfile.org/pace/1.2.4/pace.min.js"></script>
+       
+ 
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bulma@5.0.1/bulma.min.css"
+      />
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+
+      <!-- mermaid -->
+      
+      <style>
+        .swal2-styled.swal2-confirm {
+          font-size: 1.6rem;
+        }
+      </style>
+    <link rel="alternate" href="/atom.xml" title="茶九" type="application/atom+xml">
+</head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      <canvas class="fireworks"></canvas>
+      <style>
+        .fireworks {
+          position: fixed;
+          left: 0;
+          top: 0;
+          z-index: 99999;
+          pointer-events: none;
+        }
+      </style>
+      
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-数据库/MongoDB"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  mongodb
+</h1>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2019/04/07/%E6%95%B0%E6%8D%AE%E5%BA%93/MongoDB/" class="article-date">
+  <time datetime="2019-04-07T12:31:27.000Z" itemprop="datePublished">2019-04-07</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> Word count:</span>
+            <span class="post-count">2.1k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> Reading time≈</span>
+            <span class="post-count">9 min</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="一、环境搭建"><a href="#一、环境搭建" class="headerlink" title="一、环境搭建"></a>一、环境搭建</h1><h2 id="1-1-mongodb简介"><a href="#1-1-mongodb简介" class="headerlink" title="1.1 mongodb简介"></a>1.1 mongodb简介</h2><ul>
+<li><code>MongoDB</code>旨在为WEB应用提供可扩展的高性能数据存储解决方案</li>
+<li><code>MongoDB</code> 将数据存储为一个文档，数据结构由键值(<code>key=&gt;value</code>)对组成。<code>MongoDB</code> 文档类似于 <code>JSON</code>对象。字段值可以包含其他文档，数组及文档数组</li>
+</ul>
+<p><img src="http://www.runoob.com/wp-content/uploads/2013/10/crud-annotated-document.png" alt="img"></p>
+<p><strong>主要特点</strong></p>
+<ul>
+<li>高可扩展性</li>
+<li>分布式存储</li>
+<li>低成本</li>
+<li>结构灵活</li>
+</ul>
+<h2 id="1-2-window下mongodb环境搭建"><a href="#1-2-window下mongodb环境搭建" class="headerlink" title="1.2 window下mongodb环境搭建"></a>1.2 window下mongodb环境搭建</h2><ul>
+<li>下载安装包或压缩包</li>
+<li>添加<code>db</code>存储和日志存储文件夹</li>
+<li>添加服务、配置环境变量、启动<code>Mongo</code></li>
+</ul>
+<blockquote>
+<p>配置演示</p>
+</blockquote>
+<ul>
+<li>在任意目录创建几个文件夹</li>
+</ul>
+<p><img src="https://poetries1.gitee.io/img-repo/2019/12/182.png" alt="img"><br><img src="https://poetries1.gitee.io/img-repo/2019/12/183.png" alt="img"></p>
+<p><strong>通过命令行启动服务</strong></p>
+<blockquote>
+<p>配置环境变量</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#  --dbpath指定数据存储位置</span><br><span class="line">C:\Program Files\MongoDB\Server\3.4\bin\mongod --dbpath d:\mongodb\data</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://poetries1.gitee.io/img-repo/2019/12/184.png" alt="img"></p>
+<p><strong>通配置启动服务</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"># 配置d:\mongodb\etc\mongodb.conf</span><br><span class="line"></span><br><span class="line">#数据库路径</span><br><span class="line">dbpath=d:\mongodb\data\</span><br><span class="line"></span><br><span class="line">#日志输出文件路径</span><br><span class="line">logpath=d:\mongodb\logs\mongodb.log</span><br><span class="line"></span><br><span class="line">#错误日志采用追加模式，配置这个选项后mongodb的日志会追加到现有的日志文件，而不是从新创建一个新文件</span><br><span class="line">logappend=true</span><br><span class="line"></span><br><span class="line">#启用日志文件，默认启用</span><br><span class="line">journal=true</span><br><span class="line"></span><br><span class="line">#这个选项可以过滤掉一些无用的日志信息，若需要调试使用请设置为false</span><br><span class="line">quiet=true</span><br><span class="line"></span><br><span class="line">#端口号 默认为27017</span><br><span class="line">port=27017</span><br><span class="line"></span><br><span class="line">#指定存储引擎（默认先不加此引擎，如果报错了，大家在加进去）</span><br><span class="line">storageEngine=mmapv1</span><br><span class="line"></span><br><span class="line">#http配置 开启这个服务才可以在网页中访问 端口28017</span><br><span class="line">httpinterface=true</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>启动方式</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Program Files\MongoDB\Server\3.4\bin\mongod --config d:\mongodb\data</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://poetries1.gitee.io/img-repo/2019/10/349.png" alt="img"></p>
+<p><strong>更加简洁的启动方式</strong></p>
+<blockquote>
+<p>安装到<code>window</code>的服务里面，打开Windows看一下</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Program Files\MongoDB\Server\3.4\bin\mongod --config d:\mongodb\data --install --serviceName &quot;MongoDB&quot;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://poetries1.gitee.io/img-repo/2019/10/350.png" alt="img"></p>
+<p><strong>使用MongoVue连接数据库</strong></p>
+<p><img src="https://poetries1.gitee.io/img-repo/2019/10/351.png" alt="img"><br><img src="https://poetries1.gitee.io/img-repo/2019/10/352.png" alt="img"></p>
+<h2 id="1-3-linux下mongodb环境搭建"><a href="#1-3-linux下mongodb环境搭建" class="headerlink" title="1.3 linux下mongodb环境搭建"></a>1.3 linux下mongodb环境搭建</h2><ul>
+<li>下载安装包或压缩包</li>
+<li>添加<code>db</code>存储和日志存储文件夹</li>
+<li>添加服务、配置环境变量、启动<code>Mongo</code></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 远程登录服务器</span><br><span class="line">ssh root@123.142.25.365</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>上传本地的安装包</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"># 上传文件夹，传文件不需要r</span><br><span class="line">scp /mongodb/... -r root@123.142.25.365:/home</span><br><span class="line"></span><br><span class="line"># 传到服务器的/home/</span><br><span class="line"># 在指定的目录创建启动需要的文件</span><br><span class="line"></span><br><span class="line">$ cd /home/</span><br><span class="line">$ mkdir etc logs data</span><br><span class="line">$ touch logs/mongodb.log etc/mongo.conf</span><br><span class="line"># /home/etc/mongo.conf配置</span><br><span class="line"></span><br><span class="line">dbpath=/home/mongodb/data</span><br><span class="line">logpath=/mongodb/logs/mongodb.log</span><br><span class="line">logappend=true</span><br><span class="line">journal=true</span><br><span class="line">quiet=true</span><br><span class="line">port=2701</span><br><span class="line"># 启动服务</span><br><span class="line">mongod -f /home/mongodb/etc/mongo.conf</span><br><span class="line"># 创建软连接</span><br><span class="line"></span><br><span class="line">ln -s /home/mongodb/bin/mongo /usr/local/bin/mongo</span><br><span class="line"></span><br><span class="line">ln -s /home/mongodb/bin/mongod /usr/local/bin/mongod</span><br></pre></td></tr></table></figure>
+
+<h1 id="二、基本概念"><a href="#二、基本概念" class="headerlink" title="二、基本概念"></a>二、基本概念</h1><h2 id="2-1-数据库对比"><a href="#2-1-数据库对比" class="headerlink" title="2.1 数据库对比"></a>2.1 数据库对比</h2><table>
+<thead>
+<tr>
+<th align="left">SQL术语&#x2F;概念</th>
+<th align="left">MongoDB术语&#x2F;概念</th>
+<th align="left">解析&#x2F;说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>database</code></td>
+<td align="left"><code>database</code></td>
+<td align="left">数据库</td>
+</tr>
+<tr>
+<td align="left"><code>table</code></td>
+<td align="left"><code>collection</code></td>
+<td align="left">数据表&#x2F;集合</td>
+</tr>
+<tr>
+<td align="left"><code>row</code></td>
+<td align="left"><code>document</code></td>
+<td align="left">数据记录&#x2F;文档</td>
+</tr>
+<tr>
+<td align="left"><code>column</code></td>
+<td align="left"><code>field</code></td>
+<td align="left">数据记录行&#x2F;文档</td>
+</tr>
+<tr>
+<td align="left"><code>index</code></td>
+<td align="left"><code>index</code></td>
+<td align="left">索引</td>
+</tr>
+<tr>
+<td align="left"><code>table</code></td>
+<td align="left"><code>joins</code></td>
+<td align="left">表连接，<code>MongoDB</code>不支持</td>
+</tr>
+<tr>
+<td align="left"><code>primary key</code></td>
+<td align="left"><code>primary key</code></td>
+<td align="left">主键,<code>MongoDB</code>自动将<code>_id</code>字段设置为主键</td>
+</tr>
+</tbody></table>
+<p><img src="http://www.runoob.com/wp-content/uploads/2013/10/Figure-1-Mapping-Table-to-Collection-1.png" alt="img"></p>
+<h2 id="2-2-数据库"><a href="#2-2-数据库" class="headerlink" title="2.2 数据库"></a>2.2 数据库</h2><ul>
+<li>一个<code>mongodb</code>中可以建立多个数据库</li>
+<li><code>MongoDB</code>的默认数据库为”<code>db</code>“，该数据库存储在<code>data</code>目录中</li>
+<li><code>&quot;show dbs&quot;</code> 命令可以显示所有数据的列表</li>
+<li>执行 <code>&quot;db&quot;</code> 命令可以显示当前数据库对象或集合</li>
+<li><code>&quot;use&quot;</code>命令，可以连接到一个指定的数据库</li>
+</ul>
+<h2 id="2-3-文档"><a href="#2-3-文档" class="headerlink" title="2.3 文档"></a>2.3 文档</h2><ul>
+<li>文档是一组键值(<code>key-value</code>)对(即<code>BSON</code>)</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&quot;site&quot;:&quot;www.runoob.com&quot;, &quot;name&quot;:&quot;菜鸟教程&quot;&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-4-插入文档"><a href="#2-4-插入文档" class="headerlink" title="2.4 插入文档"></a>2.4 插入文档</h2><ul>
+<li><p>切换数据库</p>
+<ul>
+<li><code>use</code> 数据库名(没有就创建)</li>
+</ul>
+</li>
+<li><p>&#96;&#96;&#96;<br>db.createCollection(“user”)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">  - 创建集合相当于创建表名</span><br><span class="line">  - 或者这样创建</span><br><span class="line">    - `db.user.inert(&#123;id:123&#125;)`</span><br><span class="line"></span><br><span class="line">## 2.5 插入数据表</span><br><span class="line"></span><br><span class="line">**1. 手动插入**</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h1 id="切换创建数据库"><a href="#切换创建数据库" class="headerlink" title="切换创建数据库"></a>切换创建数据库</h1><p>use demo </p>
+<h1 id="goods相当于数据表"><a href="#goods相当于数据表" class="headerlink" title="goods相当于数据表"></a>goods相当于数据表</h1><p>db.goods.insert({“prodictId”:”10001”,”productName”:”aaa”,”slaePrice”:246,”productImage”:”1.jpg”})</p>
+<h1 id="创建数据表，暂时不需插入数据"><a href="#创建数据表，暂时不需插入数据" class="headerlink" title="创建数据表，暂时不需插入数据"></a>创建数据表，暂时不需插入数据</h1><p>db.createCollection(“goods”)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">**2. 客户端插入**</span><br><span class="line"></span><br><span class="line">&gt; 利用`mongodbVue`导入</span><br><span class="line"></span><br><span class="line"># 三、常用操作</span><br><span class="line"></span><br><span class="line">## 3.1 创建用户</span><br><span class="line"></span><br><span class="line">**1. 创建管理员**</span><br><span class="line"></span><br><span class="line">- 开启服务</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h1 id="–auth进行授权，需要认证才可以"><a href="#–auth进行授权，需要认证才可以" class="headerlink" title="–auth进行授权，需要认证才可以"></a>–auth进行授权，需要认证才可以</h1><p>mongod -f d:&#x2F;mongodb&#x2F;etc&#x2F;mongodb.conf –auth</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">**2. 通过非授权的方式启动服务**</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h1 id="创建admin数据库"><a href="#创建admin数据库" class="headerlink" title="创建admin数据库"></a>创建admin数据库</h1><p>use admin </p>
+<h1 id="给admin数据库创建账号"><a href="#给admin数据库创建账号" class="headerlink" title="给admin数据库创建账号"></a>给admin数据库创建账号</h1><p>db.createUser({user:”admin”,pwd:”admin”,roles:[“root”]}) # 3.4<br>db.addUser # 2.x</p>
+<h1 id="创建成功需要认证"><a href="#创建成功需要认证" class="headerlink" title="创建成功需要认证"></a>创建成功需要认证</h1><p>db.auth(“admin”,”admin”) # 账号、密码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">![img](https://poetries1.gitee.io/img-repo/2019/10/353.png)</span><br><span class="line"></span><br><span class="line">**3. 给使用的数据库添加用户**</span><br><span class="line"></span><br><span class="line">1. 创建用户</span><br><span class="line"></span><br><span class="line">![img](https://poetries1.gitee.io/img-repo/2019/10/354.png)</span><br><span class="line"></span><br><span class="line">1. 然后在授权登录试一下</span><br><span class="line"></span><br><span class="line">## 3.2 MongoDB 创建数据库</span><br><span class="line"></span><br><span class="line">- `MongoDB` 创建数据库的语法格式如下</span><br><span class="line">- 如果数据库不存在，则创建数据库，否则切换到指定数据库</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>use DATABASE_NAME</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- 查看所有数据库</span><br><span class="line">  - `show dbs`</span><br><span class="line">- 我们刚创建的数据库 runoob 并不在数据库的列表中， 要显示它，我们需要向 runoob 数据库插入一些数据</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>db.runoob.insert({“name”:”poetries”})<br>WriteResult({ “nInserted” : 1 })<br>show dbs</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## 3.3 MongoDB 删除数据库</span><br><span class="line"></span><br><span class="line">- `MongoDB`删除数据库的语法格式如下</span><br><span class="line">- 删除当前数据库，默认为 `test`，你可以使用 `db` 命令查看当前数据库名</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>db.dropDatabase()</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## 3.4 删除集合</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>db.collection.drop()</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## 3.5 MongoDB 插入文档</span><br><span class="line"></span><br><span class="line">&gt; 文档的数据结构和`JSON`基本一样</span><br><span class="line"></span><br><span class="line">## 3.6 插入文档</span><br><span class="line"></span><br><span class="line">- `MongoDB` 使用 `insert()`或 `save()` 方法向集合中插入文档，语法如下</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>db.COLLECTION_NAME.insert(document)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- 以下文档可以存储在 `MongoDB` 的 `runoob`数据库 的 `col` 集合中</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>db.col.insert({title: ‘MongoDB 学习’,<br>    description: ‘MongoDB 是一个 Nosql 数据库’,<br>    by: ‘poetries’,<br>    url: ‘<a target="_blank" rel="noopener" href="http://blog.poetries.top&/#39;">http://blog.poetries.top&#39;</a>,<br>    tags: [‘mongodb’, ‘database’, ‘NoSQL’],<br>    likes: 100<br>})</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- 以上实例中 `col` 是我们的集合名，如果该集合不在该数据库中， `MongoDB` 会自动创建该集合并插入文档。</span><br><span class="line">- 查看已插入文档</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>db.col.find()<br>db.col.find().pretty() #格式化方式查看</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## 3.7 MongoDB 更新文档</span><br><span class="line"></span><br><span class="line">- `MongoDB` 使用 `update()` 和 `save()` 方法来更新集合中的文档</span><br><span class="line"></span><br><span class="line">## 3.7 update() 方法</span><br><span class="line"></span><br><span class="line">&gt; `update()` 方法用于更新已存在的文档。语法格式如下</span><br><span class="line"></span><br><span class="line">- 通过 `update()`方法来更新标题(`title`):</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>db.col.update({‘title’:’MongoDB 学习’},{$set:{‘title’:’MongoDB’}})</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># 四、常用查询语句</span><br><span class="line"></span><br><span class="line">| mongo                                                       | sql                                                          | 说明                                 |</span><br><span class="line">| :---------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------- |</span><br><span class="line">| `db.users.find()`                                           | `select * from users`                                        | 从`user`表中查询所有数据             |</span><br><span class="line">| `db.users.find(&#123;“username” : “joe”, “age” : 27&#125;)`           | `select * from users where “username” = “joe” and age = 27`  | 查找`username = joe`且`age = 27`的人 |</span><br><span class="line">| `db.users.find(&#123;&#125;, &#123;“username” : 1, “email” : 1&#125;)`          | `select username, email from users`                          | 查找`username`,`email`这`2`个子项    |</span><br><span class="line">| `db.users.find(&#123;“age” : &#123;“$gt” : 18&#125;&#125;)`                     | `select * from users where age &gt;18`                          | 查找`age &gt; 18`的会员                 |</span><br><span class="line">| `db.users.find(&#123;“age” : &#123;“$gte” : 18&#125;&#125;)`                    | `select * from users where age &gt;=18`                         | 查找`age &gt;= 18`的人                  |</span><br><span class="line">| `db.users.find(&#123;“age” : &#123;“$lt” : 18&#125;&#125;)`                     | `select * from users where age &lt;18`                          | 查找`age &lt; 18`的人                   |</span><br><span class="line">| `db.users.find(&#123;“age” : &#123;“$lte” : 18&#125;&#125;)`                    | `select * from users where age &lt;=18`                         | 查找`age &lt;= 18`的人                  |</span><br><span class="line">| `db.users.find(&#123;“username” : &#123;“$ne” : “joe”&#125;&#125;)`             | `select * from users where username &lt;&gt; “joe”`                | 查找 `username != joe`的会员         |</span><br><span class="line">| `db.users.find(&#123;“ticket_no” : &#123;“$in” : [725, 542, 390]&#125;&#125;)`  | `select * from users where ticket_no in (725, 542, 390)`     | 符合`tickt_no`在此范围的结果         |</span><br><span class="line">| `db.users.find(&#123;“ticket_no” : &#123;“$nin” : [725, 542, 390]&#125;&#125;)` | `select * from users where ticket_no not in (725, 542, 390)` | 符合`tickt_no`不在此范围的结果       |</span><br><span class="line">| `db.users.find(&#123;“name” : /joey^/&#125;)`                         | `select * from users where name like “joey%”`                | 查找前`4`个字符为`joey`的人          |</span><br><span class="line"></span><br><span class="line"># 五、MongoDB链接</span><br><span class="line"></span><br><span class="line">## 5.1 MongoDB链接express</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>const express &#x3D; require(‘express’);<br>const mongoose &#x3D; require(‘mongoose’);<br>const app &#x3D; express();</p>
+<p>&#x2F;&#x2F; 连接mongo 并且使用React这个集合，没有就会新建<br>const DB_URL &#x3D; ‘mongodb:&#x2F;&#x2F;127.0.0.1:27017&#x2F;react’;<br>mongoose.connect(DB_URL);<br>mongoose.connection.on(‘connected’,()&#x3D;&gt;{<br>    console.log(‘mongo connect success’);<br>})</p>
+<p>&#x2F;&#x2F; 类似于MySQL的表 mongo里有文档、字段的概念</p>
+<p>const User &#x3D; mongoose.model(‘user’,new mongoose.Schema({<br>    user:{type:String,require:true},<br>    age:{type:Number,require:true}<br>}))</p>
+<p>&#x2F;&#x2F;新增数据<br>&#x2F;&#x2F; User.create({<br>&#x2F;&#x2F;     user:’小胡’,<br>&#x2F;&#x2F;     age:18<br>&#x2F;&#x2F; },(err,doc)&#x3D;&gt;{<br>&#x2F;&#x2F;     if(!err) {<br>&#x2F;&#x2F;         console.log(doc)<br>&#x2F;&#x2F;     } else {<br>&#x2F;&#x2F;         console.log(err)<br>&#x2F;&#x2F;     }<br>&#x2F;&#x2F; })</p>
+<p>&#x2F;&#x2F; 删除数据 {}过滤对象<br>&#x2F;&#x2F; User.remove({age:22},(err,doc)&#x3D;&gt;{<br>&#x2F;&#x2F;     console.log(doc)<br>&#x2F;&#x2F; })<br>&#x2F;&#x2F; 更新<br>User.update({‘user’:’小明’},{‘$set’:{age:30}},(err,doc)&#x3D;&gt;{<br>    console.log(doc)<br>})<br>app.get(‘&#x2F;‘,(req,res)&#x3D;&gt;{<br>    res.send(‘<h1>Hello word!</h1>‘)<br>})<br>app.get(‘&#x2F;data’,(req,res)&#x3D;&gt;{<br>    &#x2F;&#x2F; findOne 只返回一条，返回对象直接使用，而不是返回数组<br>    User.findOne({‘user’:’小明’},(err,doc)&#x3D;&gt;{<br>        res.json(doc)<br>    })<br>})</p>
+<p>app.listen(9000,()&#x3D;&gt;{<br>    console.log(‘Node app listen 9000’)<br>})<br>&#96;&#96;&#96;</p>
+ 
+      <!-- reward -->
+      
+      <div id="reword-out">
+        <div id="reward-btn">
+          Donate
+        </div>
+      </div>
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>Copyright： </strong>
+          
+          Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source.
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2019/04/07/%E6%95%B0%E6%8D%AE%E5%BA%93/MongoDB/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mongodb/" rel="tag">mongodb</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2019/05/05/nodejs/node-%E5%85%A5%E9%97%A8/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            node-入门
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2019/03/15/%E6%95%B0%E6%8D%AE%E5%BA%93/mysql/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">mysql</div>
+      </a>
+    
+  </nav>
+
+  
+   
+    
+    <script src="https://cdn.staticfile.org/twikoo/1.4.18/twikoo.all.min.js"></script>
+    <div id="twikoo" class="twikoo"></div>
+    <script>
+        twikoo.init({
+            envId: ""
+        })
+    </script>
+ 
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2017-2022
+        <i class="ri-heart-fill heart_icon"></i> 茶九
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>Visitors:<span id="busuanzi_value_site_uv"></span></span>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>Views:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>    
+    </main>
+    <div class="float_btns">
+      <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+    </div>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/茶九.png" alt="茶九"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-3.6.0.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
+
+<script src="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.staticfile.org/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/default-skin/default-skin.min.css">
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+ 
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+ 
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<script src="https://cdn.staticfile.org/animejs/3.2.1/anime.min.js"></script>
+
+<script src="/js/clickBoom1.js"></script>
+ 
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.staticfile.org/clipboard.js/2.0.10/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+ 
+<script src="/js/dz.js"></script>
+ 
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "forest" });
+  }
+</script>
+
+
+    
+    
+
+  </div>
+</body>
+
+</html>
