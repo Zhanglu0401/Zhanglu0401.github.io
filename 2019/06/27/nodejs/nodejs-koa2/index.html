@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+  
+
+    <head>
+      <meta charset="utf-8" />
+        
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title>node-koa2总结 |  茶九-Blog</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="/chajiu.ico" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      
+<link rel="stylesheet" href="/css/fonts/remixicon.css">
+
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.staticfile.org/pace/1.2.4/pace.min.js"></script>
+       
+ 
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bulma@5.0.1/bulma.min.css"
+      />
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+
+      <!-- mermaid -->
+      
+      <style>
+        .swal2-styled.swal2-confirm {
+          font-size: 1.6rem;
+        }
+      </style>
+    <link rel="alternate" href="/atom.xml" title="茶九-Blog" type="application/atom+xml">
+</head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      <canvas class="fireworks"></canvas>
+      <style>
+        .fireworks {
+          position: fixed;
+          left: 0;
+          top: 0;
+          z-index: 99999;
+          pointer-events: none;
+        }
+      </style>
+      
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-nodejs/nodejs-koa2"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  node-koa2总结
+</h1>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2019/06/27/nodejs/nodejs-koa2/" class="article-date">
+  <time datetime="2019-06-27T01:27:18.000Z" itemprop="datePublished">2019-06-27</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a> / <a class="article-category-link" href="/categories/%E5%90%8E%E7%AB%AF/%E6%A1%86%E6%9E%B6/">框架</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">2.3k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">9 分钟</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="一、Koa框架介绍以及Koa环境搭建"><a href="#一、Koa框架介绍以及Koa环境搭建" class="headerlink" title="一、Koa框架介绍以及Koa环境搭建"></a>一、Koa框架介绍以及Koa环境搭建</h1><h2 id="1-1-Koa-框架介绍"><a href="#1-1-Koa-框架介绍" class="headerlink" title="1.1 Koa 框架介绍"></a>1.1 Koa 框架介绍</h2><blockquote>
+<p><code>Node.js</code> 是一个异步的世界，官方 <code>API</code> 支持的都是 <code>callback</code> 形式的异步编程模型，这 会带来许多问题，例如:</p>
+</blockquote>
+<ol>
+<li><code>callback</code> 嵌套问题</li>
+<li>异步函数中可能同步调用 callback 返回 数据，带来不一致性。为了解决以上问题 <code>Koa</code> 出现了</li>
+</ol>
+<p><strong>Koa – 基于 Node.js 平台的下一代 web 开发框架</strong></p>
+<blockquote>
+<p><code>koa</code> 是由 <code>Express</code> 原班人马打造的，致力于成为一个更小、更富有表现力、更健壮的 Web 框架。 使用 <code>koa</code> 编写 <code>web</code> 应用，可以免除重复繁琐的回调函数嵌套， 并极大地提 升错误处理的效率。<code>koa</code>不在内核方法中绑定任何中间件， 它仅仅提供了一个轻量优雅的 函数库，使得编写 Web 应用变得得心应手。开发思路和 express 差不多，最大的特点就是 可以避免异步嵌套</p>
+</blockquote>
+<h2 id="1-2-Koa2-x-框架的安装使用"><a href="#1-2-Koa2-x-框架的安装使用" class="headerlink" title="1.2 Koa2.x 框架的安装使用"></a>1.2 Koa2.x 框架的安装使用</h2><p><strong>1. 安装 Node.js 8.x 以上的版本</strong></p>
+<blockquote>
+<p>开发 <code>Koa2</code> 之前，<code>Node.js</code> 是有要求的，它要求 <code>Node.js</code> 版本高于 <code>V7.6</code>。因为 <code>node.js 7.6</code>版本 开始完全支持 <code>async/await</code>，所以才能完全你支持我们的 Koa2&#96;</p>
+</blockquote>
+<p><strong>2. 安装 Koa</strong></p>
+<blockquote>
+<p>安装 <code>Koa</code> 框架和我们以前安装其他模块是一样的</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save koa / cnpm install --save koa</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>--save</code> 参数，表示自动修改 <code>package.json</code> 文件，自动添加依赖项</p>
+</blockquote>
+<p><strong>简单使用</strong></p>
+<p><img src="https://poetries1.gitee.io/img-repo/2019/10/494.png" alt="img"></p>
+<h1 id="二、koa-路由-get传值、动态路由"><a href="#二、koa-路由-get传值、动态路由" class="headerlink" title="二、koa 路由 get传值、动态路由"></a>二、koa 路由 get传值、动态路由</h1><h2 id="2-1-Koa-路由"><a href="#2-1-Koa-路由" class="headerlink" title="2.1 Koa 路由"></a>2.1 Koa 路由</h2><ul>
+<li>路由(<code>Routing</code>)是由一个 <code>URI</code>(或者叫路径)和一个特定的 <code>HTTP</code> 方法(<code>GET</code>、<code>POST</code>等)<br>组成的，涉及到应用如何响应客户端对某个网站节点的访问</li>
+<li>通俗的讲:路由就是根据不同的 <code>URL</code> 地址，加载不同的页面实现不同的功能</li>
+<li><code>Koa</code> 中的路由和 <code>Express</code> 有所不同，在 <code>Express</code> 中直接引入 <code>Express</code> 就可以配置路由，但是在 <code>Koa</code>中我们需要安装对应的 <code>koa-router</code> 路由模块来实现</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save koa-router</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://poetries1.gitee.io/img-repo/2019/10/495.png" alt="img"></p>
+<h2 id="2-2-Koa-路由-get-传值"><a href="#2-2-Koa-路由-get-传值" class="headerlink" title="2.2 Koa 路由 get 传值"></a>2.2 Koa 路由 get 传值</h2><blockquote>
+<p>在 <code>koa2</code> 中 <code>GET</code> 传值通过 <code>request</code> 接收，但是接收的方法有两种:<code>query</code> 和 <code>querystring</code></p>
+</blockquote>
+<ul>
+<li><code>query</code>:返回的是格式化好的参数对象。</li>
+<li><code>querystring</code>:返回的是请求字符串</li>
+</ul>
+<p><img src="https://poetries1.gitee.io/img-repo/2019/10/496.png" alt="img"></p>
+<h2 id="2-3-Koa-动态路由"><a href="#2-3-Koa-动态路由" class="headerlink" title="2.3 Koa 动态路由"></a>2.3 Koa 动态路由</h2><p><img src="https://poetries1.gitee.io/img-repo/2019/10/497.png" alt="img"></p>
+<h1 id="三、koa-中间件及执行流程"><a href="#三、koa-中间件及执行流程" class="headerlink" title="三、koa 中间件及执行流程"></a>三、koa 中间件及执行流程</h1><h2 id="3-1-koa中间件的洋葱图执行流程"><a href="#3-1-koa中间件的洋葱图执行流程" class="headerlink" title="3.1 koa中间件的洋葱图执行流程"></a>3.1 koa中间件的洋葱图执行流程</h2><p><img src="https://poetries1.gitee.io/img-repo/2019/10/498.gif" alt="img"></p>
+<h2 id="3-2-koa-中间件"><a href="#3-2-koa-中间件" class="headerlink" title="3.2 koa 中间件"></a>3.2 koa 中间件</h2><h3 id="3-2-1-什么是-Koa-的中间件"><a href="#3-2-1-什么是-Koa-的中间件" class="headerlink" title="3.2.1 什么是 Koa 的中间件"></a>3.2.1 什么是 Koa 的中间件</h3><ul>
+<li>通俗的讲:中间件就是匹配路由之前或者匹配路由完成做的一系列的操作，我们就可以<br>把它叫做中间件</li>
+<li>在<code>express</code>中间件(<code>Middleware</code>)是一个函数，它可以访问请求对象(request object (req)), 响应对象(<code>response object (res)</code>), 和 <code>web</code> 应用中处理请求-响应循环流程中的中间件，一 般被命名为 next 的变量。在 <code>Koa</code> 中中间件和 <code>express</code> 有点类似。</li>
+</ul>
+<p><strong>中间件的功能包括</strong></p>
+<ul>
+<li>执行任何代码</li>
+<li>修改请求和响应对象</li>
+<li>终结请求-响应循环</li>
+<li>调用堆栈中的下一个中间件</li>
+</ul>
+<blockquote>
+<p>如果我的 <code>get</code>、<code>post</code> 回调函数中，没有 <code>next</code> 参数，那么就匹配上第一个路由，就不会往下匹 配了。如果想往下匹配的话，那么需要写 <code>next()</code></p>
+</blockquote>
+<h3 id="3-2-2-Koa-应用可使用如下几种中间件"><a href="#3-2-2-Koa-应用可使用如下几种中间件" class="headerlink" title="3.2.2 Koa 应用可使用如下几种中间件"></a>3.2.2 Koa 应用可使用如下几种中间件</h3><p><strong>1. 应用级中间件</strong></p>
+<p><img src="https://poetries1.gitee.io/img-repo/2019/10/499.png" alt="img"></p>
+<p><strong>2. 路由中间件</strong></p>
+<p><img src="https://poetries1.gitee.io/img-repo/2019/10/500.png" alt="img"></p>
+<p><strong>3. 错误处理中间件</strong></p>
+<p><img src="https://poetries1.gitee.io/img-repo/2019/10/501.png" alt="img"></p>
+<p><strong>4. 第三方中间件</strong></p>
+<p><img src="https://poetries1.gitee.io/img-repo/2019/10/502.png" alt="img"></p>
+<h3 id="3-2-3-Koa-中间件的执行顺序"><a href="#3-2-3-Koa-中间件的执行顺序" class="headerlink" title="3.2.3 Koa 中间件的执行顺序"></a>3.2.3 Koa 中间件的执行顺序</h3><blockquote>
+<p><code>Koa</code> 的中间件和 <code>Express</code> 不同，<code>Koa</code> 选择了洋葱圈模型</p>
+</blockquote>
+<p><img src="https://poetries1.gitee.io/img-repo/2019/10/503.png" alt="img"></p>
+<h1 id="四、koa-ejs模板引擎使用-以及ejs配置全局数据"><a href="#四、koa-ejs模板引擎使用-以及ejs配置全局数据" class="headerlink" title="四、koa ejs模板引擎使用 以及ejs配置全局数据"></a>四、koa ejs模板引擎使用 以及ejs配置全局数据</h1><p><strong>1. 安装 koa-views 和 ejs</strong></p>
+<ul>
+<li>安装 <code>koa-views npm install --save koa-views / cnpm install --save koa-views</code></li>
+<li>安装 <code>ejs npm install ejs --save / cnpm install ejs --save</code></li>
+</ul>
+<p><strong>2. 引入 koa-views 配置中间件</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const views = require(&#x27;koa-views&#x27;);</span><br><span class="line"></span><br><span class="line">app.use(views(&#x27;views&#x27;, &#123; map: &#123;html: &#x27;ejs&#x27; &#125;&#125;));</span><br></pre></td></tr></table></figure>
+
+<p><strong>3. Koa 中使用 ejs</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">router.get(&#x27;/add&#x27;,async (ctx)=&gt;&#123; </span><br><span class="line">    let title = &#x27;hello koa2&#x27; </span><br><span class="line">    </span><br><span class="line">    await ctx.render(index&#x27;,&#123; title &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p><strong>4. Ejs 引入模板</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;%- include header.ejs %&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>5. Ejs 绑定数据</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;%=h%&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>6. Ejs 绑定 html 数据</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;%-h%&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>7. Ejs 模板判断语句</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;% if(true)&#123; %&gt;</span><br><span class="line">    &lt;div&gt;true&lt;/div&gt;</span><br><span class="line">&lt;%&#125; else&#123; %&gt;</span><br><span class="line">    &lt;div&gt;false&lt;/div&gt;</span><br><span class="line">&lt;%&#125; %&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>8. Ejs 模板中循环数据</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;%for(var i=0;i&lt;list.length;i++) &#123; %&gt;</span><br><span class="line">    &lt;li&gt;&lt;%=list[i] %&gt;&lt;/li&gt;</span><br><span class="line">&lt;%&#125;%&gt;</span><br></pre></td></tr></table></figure>
+
+<h1 id="五、koa-post-提交数据-koa-bodyparser-中间件的使用"><a href="#五、koa-post-提交数据-koa-bodyparser-中间件的使用" class="headerlink" title="五、koa post 提交数据 koa-bodyparser 中间件的使用"></a>五、koa post 提交数据 koa-bodyparser 中间件的使用</h1><h2 id="5-1-原生-Nodejs-获取-post-提交数据"><a href="#5-1-原生-Nodejs-获取-post-提交数据" class="headerlink" title="5.1 原生 Nodejs 获取 post 提交数据"></a>5.1 原生 Nodejs 获取 post 提交数据</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">function parsePostData(ctx)&#123;</span><br><span class="line">    return new Promise((resolve,reject)=&gt;&#123;</span><br><span class="line">        try&#123;</span><br><span class="line">            let postdata=&quot;&quot;;</span><br><span class="line">            ctx.req.on(&#x27;data&#x27;,(data)=&gt;&#123;</span><br><span class="line">                postdata += data</span><br><span class="line">            &#125;)</span><br><span class="line">            ctx.req.on(&quot;end&quot;,function()&#123;</span><br><span class="line">                resolve(postdata);</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;catch(error)&#123;</span><br><span class="line">            reject(error);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-2-Koa-中-koa-bodyparser-中间件的使用"><a href="#5-2-Koa-中-koa-bodyparser-中间件的使用" class="headerlink" title="5.2 Koa 中 koa-bodyparser 中间件的使用"></a>5.2 Koa 中 koa-bodyparser 中间件的使用</h2><p><strong>1. 安装 koa-bodyparser</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save koa-bodyparser</span><br></pre></td></tr></table></figure>
+
+<p><strong>2. 安装 引入配置中间件</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var Koa = require(&#x27;koa&#x27;);</span><br><span class="line">var bodyParser = require(&#x27;koa-bodyparser&#x27;);</span><br><span class="line"></span><br><span class="line">var app = new Koa();</span><br><span class="line"></span><br><span class="line">app.use(bodyParser());</span><br><span class="line">app.use(async ctx =&gt; &#123;</span><br><span class="line">    ctx.body = ctx.request.body;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p><strong>3. 使用</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctx.request.body // 获取 post 提交的数据</span><br></pre></td></tr></table></figure>
+
+<h1 id="六、koa-static静态资源中间件"><a href="#六、koa-static静态资源中间件" class="headerlink" title="六、koa-static静态资源中间件"></a>六、koa-static静态资源中间件</h1><p><strong>1. 安装 koa-static</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save koa-static</span><br></pre></td></tr></table></figure>
+
+<p><strong>2. 引入配置中间件</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const static = require(&#x27;koa-static&#x27;);</span><br><span class="line"></span><br><span class="line">app.use(static(</span><br><span class="line">    path.join( __dirname, &#x27;public&#x27;)</span><br><span class="line">))</span><br></pre></td></tr></table></figure>
+
+<h1 id="七、koa-art-template高性能模板引擎的使用"><a href="#七、koa-art-template高性能模板引擎的使用" class="headerlink" title="七、koa art-template高性能模板引擎的使用"></a>七、koa art-template高性能模板引擎的使用</h1><h2 id="7-1-常见模板引擎的性能对比"><a href="#7-1-常见模板引擎的性能对比" class="headerlink" title="7.1 常见模板引擎的性能对比"></a>7.1 常见模板引擎的性能对比</h2><blockquote>
+<p>适用于 <code>koa</code> 的模板引擎选择非常多，比如 <code>jade</code>、<code>ejs</code>、<code>nunjucks</code>、<code>art-template</code> 等</p>
+</blockquote>
+<ul>
+<li><code>art-template</code> 是一个简约、超快的模板引擎</li>
+<li>它采用作用域预声明的技术来优化模板渲染速度，从而获得接近 JavaScript 极限的运行 性能，并且同时支持 NodeJS 和浏览器。</li>
+<li><code>art-template</code> 支持 <code>ejs</code> 的语法，也可以用自己的类似 <code>angular</code> 数据绑定的语法</li>
+<li>中文文档: <a target="_blank" rel="noopener" href="http://aui.github.io/art-template/zh-cn/docs">http://aui.github.io/art-template/zh-cn/docs</a></li>
+</ul>
+<p><img src="https://poetries1.gitee.io/img-repo/2019/10/504.png" alt="img"></p>
+<p><img src="https://poetries1.gitee.io/img-repo/2019/10/505.png" alt="img"></p>
+<h2 id="7-2-在-Koa-中使用-art-template-模板引擎"><a href="#7-2-在-Koa-中使用-art-template-模板引擎" class="headerlink" title="7.2 在 Koa 中使用 art-template 模板引擎"></a>7.2 在 Koa 中使用 art-template 模板引擎</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">npm install --save art-template </span><br><span class="line">npm install --save koa-art-template</span><br><span class="line">const Koa = require(&#x27;koa&#x27;);</span><br><span class="line">const render = require(&#x27;koa-art-template&#x27;);</span><br><span class="line"></span><br><span class="line">const app = new Koa();</span><br><span class="line"></span><br><span class="line">render(app, &#123;</span><br><span class="line">    root: path.join(__dirname, &#x27;view&#x27;),</span><br><span class="line">    extname: &#x27;.art&#x27;,</span><br><span class="line">    debug: process.env.NODE_ENV !== &#x27;production&#x27;</span><br><span class="line">&#125;);</span><br><span class="line">app.use(async function (ctx) &#123;</span><br><span class="line">    await ctx.render(&#x27;user&#x27;);</span><br><span class="line">&#125;);</span><br><span class="line">app.listen(8080);</span><br></pre></td></tr></table></figure>
+
+<h2 id="7-3-art-template-模板引擎语法"><a href="#7-3-art-template-模板引擎语法" class="headerlink" title="7.3 art-template 模板引擎语法"></a>7.3 art-template 模板引擎语法</h2><blockquote>
+<p>参考:<a target="_blank" rel="noopener" href="http://aui.github.io/art-template/zh-cn/docs/syntax.html">http://aui.github.io/art-template/zh-cn/docs/syntax.html</a></p>
+</blockquote>
+<h1 id="八、koa-Cookie的使用"><a href="#八、koa-Cookie的使用" class="headerlink" title="八、koa Cookie的使用"></a>八、koa Cookie的使用</h1><h2 id="8-1-Koa-Cookie-的使用"><a href="#8-1-Koa-Cookie-的使用" class="headerlink" title="8.1 Koa Cookie 的使用"></a>8.1 Koa Cookie 的使用</h2><p><strong>1. Koa 中设置 Cookie 的值</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctx.cookies.set(name, value, [options])</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>通过 <code>options</code> 设置 <code>cookie name</code> 的 <code>value</code></p>
+</blockquote>
+<p><img src="https://poetries1.gitee.io/img-repo/2019/10/506.png" alt="img"></p>
+<p><strong>2. Koa 中获取 Cookie 的值</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctx.cookies.get(&#x27;name&#x27;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="8-2-Koa-中设置中文-Cookie"><a href="#8-2-Koa-中设置中文-Cookie" class="headerlink" title="8.2 Koa 中设置中文 Cookie"></a>8.2 Koa 中设置中文 Cookie</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">console.log(new Buffer(&#x27;hello, world!&#x27;).toString(&#x27;base64&#x27;));// 转换成 base64 字符 串:aGVsbG8sIHdvcmxkIQ==</span><br><span class="line"></span><br><span class="line">console.log(new Buffer(&#x27;aGVsbG8sIHdvcmxkIQ==&#x27;, &#x27;base64&#x27;).toString());// 还原 base 64 字符串:hello, world!</span><br></pre></td></tr></table></figure>
+
+<h1 id="九、koa-Session-的使用"><a href="#九、koa-Session-的使用" class="headerlink" title="九、koa Session 的使用"></a>九、koa Session 的使用</h1><h2 id="9-1-Session-简单介绍"><a href="#9-1-Session-简单介绍" class="headerlink" title="9.1 Session 简单介绍"></a>9.1 Session 简单介绍</h2><blockquote>
+<p><code>session</code> 是另一种记录客户状态的机制，不同的是 <code>Cookie</code> 保存在客户端浏览器中，而 <code>session</code> 保存在服务器上</p>
+</blockquote>
+<h2 id="9-2-Session-的工作流程"><a href="#9-2-Session-的工作流程" class="headerlink" title="9.2 Session 的工作流程"></a>9.2 Session 的工作流程</h2><blockquote>
+<p>当浏览器访问服务器并发送第一次请求时，服务器端会创建一个 <code>session</code> 对象，生 成一个类似于 <code>key</code>,<code>value</code> 的键值对， 然后将<code>key(cookie)</code>返回到浏览器(客户)端，浏览 器下次再访问时，携带 <code>key(cookie)</code>，找到对应的 <code>session(value)</code>。 客户的信息都保存 在 <code>session</code> 中</p>
+</blockquote>
+<h2 id="9-3-koa-session-的使用"><a href="#9-3-koa-session-的使用" class="headerlink" title="9.3 koa-session 的使用"></a>9.3 koa-session 的使用</h2><p><strong>1. 安装 express-session</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install koa-session --save</span><br></pre></td></tr></table></figure>
+
+<p><strong>2. 引入 express-session</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const session = require(&#x27;koa-session&#x27;);</span><br></pre></td></tr></table></figure>
+
+<p><strong>3. 设置官方文档提供的中间件</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">app.keys = [&#x27;some secret hurr&#x27;];</span><br><span class="line">const CONFIG = &#123;</span><br><span class="line">    key: &#x27;koa:sess&#x27;, //cookie key (default is koa:sess)</span><br><span class="line">    maxAge: 86400000, // cookie 的过期时间 maxAge in ms (default is 1 days)</span><br><span class="line">    overwrite: true, //是否可以 overwrite (默认 default true)</span><br><span class="line">    httpOnly: true, //cookie 是否只有服务器端可以访问 httpOnly or not (default true)</span><br><span class="line">    signed: true, //签名默认 true</span><br><span class="line">    rolling:false, //在每次请求时强行设置cookie，这将重置cookie过期时间(默认:false)</span><br><span class="line">    renew: false, //(boolean) renew session when session is nearly expired</span><br><span class="line">&#125;</span><br><span class="line">app.use(session(CONFIG, app));</span><br></pre></td></tr></table></figure>
+
+<p><strong>4. 使用</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//设置值 </span><br><span class="line">ctx.session.username = &quot;张三&quot;;</span><br><span class="line"></span><br><span class="line">// 获取值 </span><br><span class="line">ctx.session.username</span><br></pre></td></tr></table></figure>
+
+<h2 id="9-4-Cookie-和-Session-区别"><a href="#9-4-Cookie-和-Session-区别" class="headerlink" title="9.4 Cookie 和 Session 区别"></a>9.4 Cookie 和 Session 区别</h2><ul>
+<li><code>cookie</code> 数据存放在客户的浏览器上，<code>session</code> 数据放在服务器上</li>
+<li><code>cookie</code> 不是很安全，别人可以分析存放在本地的 <code>COOKIE</code> 并进行 <code>COOKIE</code> 欺骗 考虑到安全应当使用 <code>session</code></li>
+<li><code>session</code>会在一定时间内保存在服务器上。当访问增多，会比较占用你服务器的性能 考虑到减轻服务器性能方面，应当使用 <code>COOKIE</code></li>
+<li>单个 <code>cookie</code> 保存的数据不能超过 <code>4K</code>，很多浏览器都限制一个站点最多保存 <code>20</code> 个 <code>cookie</code></li>
+</ul>
+<h1 id="十、Koa-操作-Mongodb-数据库"><a href="#十、Koa-操作-Mongodb-数据库" class="headerlink" title="十、Koa 操作 Mongodb 数据库"></a>十、Koa 操作 Mongodb 数据库</h1><blockquote>
+<p>官方文档:<a target="_blank" rel="noopener" href="http://mongodb.github.io/node-mongodb-native/">http://mongodb.github.io/node-mongodb-native/</a></p>
+</blockquote>
+<h1 id="十一、Koa-应用生成器以及-Koa-路由模-块化"><a href="#十一、Koa-应用生成器以及-Koa-路由模-块化" class="headerlink" title="十一、Koa 应用生成器以及 Koa 路由模 块化"></a>十一、Koa 应用生成器以及 Koa 路由模 块化</h1><h2 id="11-1-koa-应用生成器"><a href="#11-1-koa-应用生成器" class="headerlink" title="11.1 koa 应用生成器"></a>11.1 koa 应用生成器</h2><blockquote>
+<p>通过应用 <code>koa</code> 脚手架生成工具 可以快速创建一个基于 <code>koa2</code> 的应用的骨架</p>
+</blockquote>
+<p><strong>1. 全局安装</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install koa-generator -g</span><br></pre></td></tr></table></figure>
+
+<p><strong>2. 创建项目</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">koa koa_demo</span><br></pre></td></tr></table></figure>
+
+<p><strong>3. 安装依赖</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd koa_demo</span><br><span class="line"></span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
+
+<p><strong>4. 启动项目</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm start</span><br></pre></td></tr></table></figure>
+
+<h2 id="11-2-koa-搭建模块化路由-x2F-层级路由"><a href="#11-2-koa-搭建模块化路由-x2F-层级路由" class="headerlink" title="11.2 koa 搭建模块化路由&#x2F;层级路由"></a>11.2 koa 搭建模块化路由&#x2F;层级路由</h2><ol>
+<li>在目录下面新建一个文件夹 <code>routes</code></li>
+<li>在 <code>routes</code> 里面配置对应的子页面</li>
+<li>比如在 <code>routes</code> 新建 <code>index.js</code></li>
+</ol>
+<p><img src="https://poetries1.gitee.io/img-repo/2019/10/507.png" alt="img"></p>
+<ol>
+<li>然后在主应用中加载子路由模块:</li>
+</ol>
+<p><img src="https://poetries1.gitee.io/img-repo/2019/10/508.png" alt="img"></p>
+ 
+      <!-- reward -->
+      
+      <div id="reword-out">
+        <div id="reward-btn">
+          打赏
+        </div>
+      </div>
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>版权声明： </strong>
+          
+          本博客所有文章除特别声明外，著作权归作者所有。转载请注明出处！
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2019/06/27/nodejs/nodejs-koa2/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nodejs/" rel="tag">nodejs</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2019/07/20/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            进程和线程
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2019/06/07/nodejs/express/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">node-express框架总结</div>
+      </a>
+    
+  </nav>
+
+  
+   
+    
+    <script src="https://cdn.staticfile.org/twikoo/1.4.18/twikoo.all.min.js"></script>
+    <div id="twikoo" class="twikoo"></div>
+    <script>
+        twikoo.init({
+            envId: ""
+        })
+    </script>
+ 
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2017-2022
+        <i class="ri-heart-fill heart_icon"></i> 茶九
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></span>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+</footer>    
+    </main>
+    <div class="float_btns">
+      <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+    </div>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/茶九.png" alt="茶九-Blog"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-3.6.0.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
+
+<script src="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.staticfile.org/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/default-skin/default-skin.min.css">
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+ 
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+ 
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<script src="https://cdn.staticfile.org/animejs/3.2.1/anime.min.js"></script>
+
+<script src="/js/clickBoom1.js"></script>
+ 
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.staticfile.org/clipboard.js/2.0.10/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+ 
+<script src="/js/dz.js"></script>
+ 
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "forest" });
+  }
+</script>
+
+
+    
+    
+
+  </div>
+</body>
+
+</html>
