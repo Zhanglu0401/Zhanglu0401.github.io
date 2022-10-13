@@ -18,8 +18,8 @@
   
   <entry>
     <title>qiankun微前端</title>
-    <link href="http://example.com/posts/23375/"/>
-    <id>http://example.com/posts/23375/</id>
+    <link href="http://example.com/posts/23375.html"/>
+    <id>http://example.com/posts/23375.html</id>
     <published>2022-04-12T07:28:31.000Z</published>
     <updated>2022-06-07T00:57:26.000Z</updated>
     
@@ -45,8 +45,8 @@
   
   <entry>
     <title>git-stach</title>
-    <link href="http://example.com/posts/23375/"/>
-    <id>http://example.com/posts/23375/</id>
+    <link href="http://example.com/posts/23375.html"/>
+    <id>http://example.com/posts/23375.html</id>
     <published>2022-01-12T03:57:49.000Z</published>
     <updated>2022-05-31T07:25:06.000Z</updated>
     
@@ -70,8 +70,8 @@
   
   <entry>
     <title>vue3优化</title>
-    <link href="http://example.com/posts/23375/"/>
-    <id>http://example.com/posts/23375/</id>
+    <link href="http://example.com/posts/23375.html"/>
+    <id>http://example.com/posts/23375.html</id>
     <published>2021-10-16T00:26:19.000Z</published>
     <updated>2022-06-07T00:51:54.000Z</updated>
     
@@ -95,8 +95,8 @@
   
   <entry>
     <title>Vue3-设计目标、做了哪些优化</title>
-    <link href="http://example.com/posts/23375/"/>
-    <id>http://example.com/posts/23375/</id>
+    <link href="http://example.com/posts/23375.html"/>
+    <id>http://example.com/posts/23375.html</id>
     <published>2021-10-11T13:19:27.000Z</published>
     <updated>2022-06-07T00:51:02.000Z</updated>
     
@@ -120,8 +120,8 @@
   
   <entry>
     <title>vue3-Treeshaking</title>
-    <link href="http://example.com/posts/23375/"/>
-    <id>http://example.com/posts/23375/</id>
+    <link href="http://example.com/posts/23375.html"/>
+    <id>http://example.com/posts/23375.html</id>
     <published>2021-09-29T01:48:38.000Z</published>
     <updated>2022-06-07T00:50:20.000Z</updated>
     
@@ -145,8 +145,8 @@
   
   <entry>
     <title>vue3-Proxy API 替代 defineProperty API</title>
-    <link href="http://example.com/posts/23375/"/>
-    <id>http://example.com/posts/23375/</id>
+    <link href="http://example.com/posts/23375.html"/>
+    <id>http://example.com/posts/23375.html</id>
     <published>2021-09-26T04:54:42.000Z</published>
     <updated>2022-06-07T00:49:26.000Z</updated>
     
@@ -170,8 +170,8 @@
   
   <entry>
     <title>vue3-Composition API详解</title>
-    <link href="http://example.com/posts/23375/"/>
-    <id>http://example.com/posts/23375/</id>
+    <link href="http://example.com/posts/23375.html"/>
+    <id>http://example.com/posts/23375.html</id>
     <published>2021-09-14T03:26:49.000Z</published>
     <updated>2022-10-13T01:30:19.694Z</updated>
     
@@ -197,8 +197,8 @@
   
   <entry>
     <title>vue3-Composition Api 与  Options Api 有什么不同</title>
-    <link href="http://example.com/posts/23375/"/>
-    <id>http://example.com/posts/23375/</id>
+    <link href="http://example.com/posts/23375.html"/>
+    <id>http://example.com/posts/23375.html</id>
     <published>2021-09-02T09:23:09.000Z</published>
     <updated>2022-10-13T01:30:41.667Z</updated>
     
@@ -222,8 +222,8 @@
   
   <entry>
     <title>Typescript总结</title>
-    <link href="http://example.com/posts/23375/"/>
-    <id>http://example.com/posts/23375/</id>
+    <link href="http://example.com/posts/23375.html"/>
+    <id>http://example.com/posts/23375.html</id>
     <published>2021-08-23T02:31:24.000Z</published>
     <updated>2022-06-07T00:45:16.000Z</updated>
     
@@ -247,8 +247,8 @@
   
   <entry>
     <title>Typescript实践总结[基础+工程+实践]</title>
-    <link href="http://example.com/posts/23375/"/>
-    <id>http://example.com/posts/23375/</id>
+    <link href="http://example.com/posts/23375.html"/>
+    <id>http://example.com/posts/23375.html</id>
     <published>2021-08-15T06:31:08.000Z</published>
     <updated>2022-06-07T00:44:02.000Z</updated>
     
@@ -275,8 +275,8 @@
   
   <entry>
     <title>Typescript基础总结</title>
-    <link href="http://example.com/posts/23375/"/>
-    <id>http://example.com/posts/23375/</id>
+    <link href="http://example.com/posts/23375.html"/>
+    <id>http://example.com/posts/23375.html</id>
     <published>2021-08-03T13:18:43.000Z</published>
     <updated>2022-06-07T00:43:04.000Z</updated>
     
@@ -300,8 +300,8 @@
   
   <entry>
     <title>TS-interface与type区别</title>
-    <link href="http://example.com/posts/23375/"/>
-    <id>http://example.com/posts/23375/</id>
+    <link href="http://example.com/posts/23375.html"/>
+    <id>http://example.com/posts/23375.html</id>
     <published>2021-07-25T08:20:43.000Z</published>
     <updated>2022-06-07T00:41:54.000Z</updated>
     
@@ -325,8 +325,8 @@
   
   <entry>
     <title>Graphviz绘制流程图</title>
-    <link href="http://example.com/posts/23375/"/>
-    <id>http://example.com/posts/23375/</id>
+    <link href="http://example.com/posts/23375.html"/>
+    <id>http://example.com/posts/23375.html</id>
     <published>2021-07-16T15:08:47.000Z</published>
     <updated>2022-06-07T00:40:36.000Z</updated>
     
@@ -350,8 +350,8 @@
   
   <entry>
     <title>echart使用小结</title>
-    <link href="http://example.com/posts/23375/"/>
-    <id>http://example.com/posts/23375/</id>
+    <link href="http://example.com/posts/23375.html"/>
+    <id>http://example.com/posts/23375.html</id>
     <published>2021-06-23T11:34:07.000Z</published>
     <updated>2022-06-07T00:40:14.000Z</updated>
     
@@ -378,8 +378,8 @@
   
   <entry>
     <title>浅谈PWA(Progressive Web App)</title>
-    <link href="http://example.com/posts/23375/"/>
-    <id>http://example.com/posts/23375/</id>
+    <link href="http://example.com/posts/23375.html"/>
+    <id>http://example.com/posts/23375.html</id>
     <published>2021-06-12T08:27:05.000Z</published>
     <updated>2022-06-07T00:39:20.000Z</updated>
     
@@ -403,8 +403,8 @@
   
   <entry>
     <title>浏览器组成与架构</title>
-    <link href="http://example.com/posts/23375/"/>
-    <id>http://example.com/posts/23375/</id>
+    <link href="http://example.com/posts/23375.html"/>
+    <id>http://example.com/posts/23375.html</id>
     <published>2021-05-27T07:31:26.000Z</published>
     <updated>2022-06-07T00:38:46.000Z</updated>
     
@@ -428,8 +428,8 @@
   
   <entry>
     <title>await 在 forEach 中不生效解决方案</title>
-    <link href="http://example.com/posts/23375/"/>
-    <id>http://example.com/posts/23375/</id>
+    <link href="http://example.com/posts/23375.html"/>
+    <id>http://example.com/posts/23375.html</id>
     <published>2021-05-24T06:46:21.000Z</published>
     <updated>2022-05-31T03:43:36.000Z</updated>
     
@@ -455,8 +455,8 @@
   
   <entry>
     <title>浏览器渲染原理</title>
-    <link href="http://example.com/posts/23375/"/>
-    <id>http://example.com/posts/23375/</id>
+    <link href="http://example.com/posts/23375.html"/>
+    <id>http://example.com/posts/23375.html</id>
     <published>2021-05-19T06:18:26.000Z</published>
     <updated>2022-06-07T00:37:52.000Z</updated>
     
@@ -480,8 +480,8 @@
   
   <entry>
     <title>浏览器缓存原理</title>
-    <link href="http://example.com/posts/23375/"/>
-    <id>http://example.com/posts/23375/</id>
+    <link href="http://example.com/posts/23375.html"/>
+    <id>http://example.com/posts/23375.html</id>
     <published>2021-05-07T01:33:18.000Z</published>
     <updated>2022-06-07T00:36:52.000Z</updated>
     
@@ -505,8 +505,8 @@
   
   <entry>
     <title>浏览器安全插箱跨域</title>
-    <link href="http://example.com/posts/23375/"/>
-    <id>http://example.com/posts/23375/</id>
+    <link href="http://example.com/posts/23375.html"/>
+    <id>http://example.com/posts/23375.html</id>
     <published>2021-04-29T07:31:05.000Z</published>
     <updated>2022-06-07T00:36:20.000Z</updated>
     
