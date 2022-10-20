@@ -1,3 +1,4 @@
+http://example.com/2022/10/20/Typora/1-typora%E5%9B%BE%E5%BA%8A/
 http://example.com/2022/10/17/Github/1-ping%E8%A7%A3%E6%9E%90ip%E9%94%99%E8%AF%AF/
 http://example.com/2018/02/07/html+css+js+ts/1-%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D/
 http://example.com/2019/05/26/nodejs/nodejs-websocker%E4%B8%8Esocket.io%E7%9A%84%E5%8C%BA%E5%88%AB/
@@ -293,6 +294,7 @@ http://example.com/tags/es6/
 http://example.com/tags/typescript/
 http://example.com/tags/async-await/
 http://example.com/tags/github/
+http://example.com/tags/Typora/
 http://example.com/categories/%E6%A1%86%E6%9E%B6/
 http://example.com/categories/%E6%9E%B6%E6%9E%84%E6%A8%A1%E5%BC%8F/
 http://example.com/categories/React/
@@ -326,3 +328,4 @@ http://example.com/categories/%E5%90%8E%E7%AB%AF/%E7%AE%97%E6%B3%95/
 http://example.com/categories/javascript/
 http://example.com/categories/%E5%89%8D%E7%AB%AF/%E9%97%AE%E9%A2%98/
 http://example.com/categories/github/
+http://example.com/categories/Typora/

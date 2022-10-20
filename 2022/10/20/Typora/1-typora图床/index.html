@@ -11,7 +11,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1"
       />
-      <title>Ping 解析Github地址错误 |  茶九-Blog</title>
+      <title>Typora &amp; gitee图床 |  茶九-Blog</title>
   <meta name="generator" content="hexo-theme-ayer">
       
       <link rel="shortcut icon" href="/chajiu.ico" />
@@ -76,7 +76,7 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="post-Github/1-ping解析ip错误"
+  id="post-Typora/1-typora图床"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -87,7 +87,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  Ping 解析Github地址错误
+  Typora &amp; gitee图床
 </h1>
  
 
@@ -95,11 +95,11 @@
     </header>
      
     <div class="article-meta">
-      <a href="/2022/10/17/Github/1-ping%E8%A7%A3%E6%9E%90ip%E9%94%99%E8%AF%AF/" class="article-date">
-  <time datetime="2022-10-17T05:46:23.000Z" itemprop="datePublished">2022-10-17</time>
+      <a href="/2022/10/20/Typora/1-typora%E5%9B%BE%E5%BA%8A/" class="article-date">
+  <time datetime="2022-10-20T09:24:49.000Z" itemprop="datePublished">2022-10-20</time>
 </a> 
   <div class="article-category">
-    <a class="article-category-link" href="/categories/github/">github</a>
+    <a class="article-category-link" href="/categories/Typora/">Typora</a>
   </div>
   
 <div class="word_count">
@@ -107,7 +107,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">584</span>
+            <span class="post-count">949</span>
         </span>
     </span>
 
@@ -116,36 +116,110 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">2 分钟</span>
+            <span class="post-count">3 分钟</span>
         </span>
     </span>
 </div>
  
     </div>
       
-    <div class="tocbot"></div>
-
 
 
 
   
     <div class="article-entry" itemprop="articleBody">
        
-  <h1 id="一-、Ping-解析Github等ip地址错误"><a href="#一-、Ping-解析Github等ip地址错误" class="headerlink" title="一 、Ping 解析Github等ip地址错误"></a>一 、Ping 解析Github等ip地址错误</h1><h2 id="1-1-解析github返回-2606-50c0-8000-153-错误"><a href="#1-1-解析github返回-2606-50c0-8000-153-错误" class="headerlink" title="1.1 解析github返回[2606:50c0:8000::153]错误"></a>1.1 解析github返回[2606:50c0:8000::153]错误</h2><blockquote>
-<p>出现在我们<code>Ping</code>命令<code>github</code>等其他ip时返回<code>[2606:50c0:8000::153]</code>问题。</p>
+  <blockquote>
+<p>这篇文章主要是讲述关于使用gitee来做图床，以实现本地复制的图片自动转换成外网图片。</p>
 </blockquote>
-<h2 id="1-2-问题重现："><a href="#1-2-问题重现：" class="headerlink" title="1.2 问题重现："></a>1.2 问题重现：</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">正在 Ping zhanglu0401.github.io [2606:50c0:8000::153] 具有32字节的数据</span><br><span class="line">来自 2606:50c0:8000::153 的回复：时间=100ms</span><br><span class="line">来自 2606:50c0:8000::153 的回复：时间=99ms</span><br><span class="line">来自 2606:50c0:8000::153 的回复：时间=90ms</span><br><span class="line">来自 2606:50c0:8000::153 的回复：时间=99ms</span><br><span class="line"></span><br><span class="line">2606:50c0:8000::153 的Ping 统计信息：</span><br><span class="line">    数据包：已发送 = 4，已接收 = 4，丢失 = 0 (0% 丢失)</span><br><span class="line">往返行程的估计事件(以毫秒为单位)：</span><br><span class="line">    最短 = 149ms，最长 = 150ms，平均 = 149ms</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h3 id="1-2-1-问题解决方案："><a href="#1-2-1-问题解决方案：" class="headerlink" title="1.2.1 问题解决方案："></a>1.2.1 问题解决方案：</h3><blockquote>
-<p>在我们C盘中找到<code>C:\Windows\System32\drivers\etc\hosts</code>文件,<code>不带后缀</code>的<code>hosts</code>文件，用文本打开全部删除，将下面代码复制粘贴进去</p>
-</blockquote>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"># Copyright (c) 1993-2009 Microsoft Corp.</span><br><span class="line">#</span><br><span class="line"># This is a sample HOSTS file used by Microsoft TCP/IP for Windows.</span><br><span class="line">#</span><br><span class="line"># This file contains the mappings of IP addresses to host names. Each</span><br><span class="line"># entry should be kept on an individual line. The IP address should</span><br><span class="line"># be placed in the first column followed by the corresponding host name.</span><br><span class="line"># The IP address and the host name should be separated by at least one</span><br><span class="line"># space.</span><br><span class="line">#</span><br><span class="line"># Additionally, comments (such as these) may be inserted on individual</span><br><span class="line"># lines or following the machine name denoted by a &#x27;#&#x27; symbol.</span><br><span class="line">#</span><br><span class="line"># For example:</span><br><span class="line">#</span><br><span class="line">#      102.54.94.97     rhino.acme.com          # source server</span><br><span class="line">#       38.25.63.10     x.acme.com              # x client host</span><br><span class="line"></span><br><span class="line"># localhost name resolution is handled within DNS itself.</span><br><span class="line">#	127.0.0.1       localhost</span><br><span class="line">#	::1             localhost</span><br><span class="line">140.82.114.3 github.com</span><br><span class="line"></span><br><span class="line">199.232.69.194 github.global.ssl.fastly.net</span><br><span class="line"></span><br><span class="line">185.199.108.153 Site not found · GitHub Pages</span><br><span class="line"></span><br><span class="line">185.199.109.153 Site not found · GitHub Pages</span><br><span class="line"></span><br><span class="line">185.199.110.153 Site not found · GitHub Pages</span><br><span class="line"></span><br><span class="line">185.199.111.153 Site not found · GitHub Pages</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h4 id="1-2-3-验证问题是否解决："><a href="#1-2-3-验证问题是否解决：" class="headerlink" title="1.2.3 验证问题是否解决："></a>1.2.3 验证问题是否解决：</h4><blockquote>
-<p>我们再次ping我们的ip地址即可发现我们的返回信息变化成以下信息了</p>
-</blockquote>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">正在 Ping zhanglu0401.github.io [185.199.111.153] 具有 32 字节的数据:</span><br><span class="line">来自 185.199.111.153 的回复: 字节=32 时间=325ms TTL=52</span><br><span class="line">来自 185.199.111.153 的回复: 字节=32 时间=61ms TTL=52</span><br><span class="line">来自 185.199.111.153 的回复: 字节=32 时间=175ms TTL=52</span><br><span class="line">来自 185.199.111.153 的回复: 字节=32 时间=66ms TTL=52</span><br><span class="line"></span><br><span class="line">185.199.111.153 的 Ping 统计信息:</span><br><span class="line">    数据包: 已发送 = 4，已接收 = 4，丢失 = 0 (0% 丢失)，</span><br><span class="line">往返行程的估计时间(以毫秒为单位):</span><br><span class="line">    最短 = 61ms，最长 = 325ms，平均 = 156ms</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre><code>typora是一款功能强大且界面简洁的markdown编辑工具,但是早期的版本不支持图床功能,直到0.9.84版本,才开始支持图床功能。搭建图床的方法有很多种,本文将介绍如何在Gitee中搭建typora图床。
+</code></pre>
+<h2 id="所需环境及软件"><a href="#所需环境及软件" class="headerlink" title="所需环境及软件"></a>所需环境及软件</h2><ul>
+<li>typora (版本&gt;0.9.84)</li>
+<li>gitee</li>
+<li>node环境</li>
+</ul>
+<h4 id="typora结合gitee图床的优势"><a href="#typora结合gitee图床的优势" class="headerlink" title="typora结合gitee图床的优势"></a>typora结合gitee图床的优势</h4><ul>
+<li>分享文件只需要分享一个*.md文件即可，插入的图片依旧可以访问，</li>
+<li>图床不限制，访问速度快，不用害怕文件丢失</li>
+</ul>
+<h2 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h2><h3 id="一-、安装node环境"><a href="#一-、安装node环境" class="headerlink" title="(一)、安装node环境"></a>(一)、安装node环境</h3><ul>
+<li>打开命令行窗口，输入node -v显示版本信息则安装成功！</li>
+</ul>
+<h3 id="二-、配置Gitee"><a href="#二-、配置Gitee" class="headerlink" title="(二)、配置Gitee"></a>(二)、配置Gitee</h3><h4 id="新建仓库"><a href="#新建仓库" class="headerlink" title="新建仓库"></a>新建仓库</h4><ul>
+<li><p>登录gitee，新建仓库 gitee网址：<code>https://gitee.com/</code>。</p>
+<p>  <img src="https://gitee.com/zhanglu68/img-blog/raw/master/imgs/20221020170549.png" alt="新建仓库"></p>
+</li>
+<li><p>填写信息，创建仓库（仓库需要是开源，创建不可选，先选私有）</p>
+<p>  <img src="https://gitee.com/zhanglu68/img-blog/raw/master/imgs/20221020172048.png" alt="创建仓库"></p>
+</li>
+<li><p>初始化文件模板  (使仓库创建两个文件，没有文件仓库不可修改开源)<br>​	<img src="https://gitee.com/zhanglu68/img-blog/raw/master/imgs/20221020171542.png" alt="初始化文件"></p>
+</li>
+<li><p>进入仓库，点击右侧管理</p>
+<p><img src="https://gitee.com/zhanglu68/img-blog/raw/master/imgs/20221020172951.png" alt="仓库管理"></p>
+</li>
+<li><p>将是否开源选项勾选，勾选三个承诺选项，最后点击保存并提交审核按钮，等待审核完成</p>
+<p><img src="https://gitee.com/zhanglu68/img-blog/raw/master/imgs/20221020173103.png" alt="选择开源配置"></p>
+</li>
+</ul>
+<h4 id="新建私人令牌"><a href="#新建私人令牌" class="headerlink" title="新建私人令牌"></a>新建私人令牌</h4><ul>
+<li><p>打开gitee的<code>设置</code>选项，在左侧的安全设置中找到<code>私人令牌</code>选项，点击<code>生成新令牌</code></p>
+<p> <img src="/%E4%BB%A4%E7%89%8C.png" alt="令牌"></p>
+</li>
+<li><p>根据需要，设置对应的权限，一般默认即可，后续可以更改</p>
+<p>  <img src="https://gitee.com/zhanglu68/img-blog/raw/master/imgs/20221020173327.png" alt="令牌选项"></p>
+</li>
+<li><p>一般需要验证密码，验证密码后，会自动生成令牌，生成成功之后，会弹窗显示令牌</p>
 <blockquote>
-<p>到这里即大功告成了！大家快去试试吧！</p>
+<p>切记，一定要<code>保存</code>好，后续gitee<code>不会再展示</code>了</p>
+</blockquote>
+</li>
+<li><p> <img src="https://gitee.com/zhanglu68/img-blog/raw/master/imgs/20221020173440.png" alt="1111"></p>
+</li>
+</ul>
+<h3 id="三-、安装PicGo"><a href="#三-、安装PicGo" class="headerlink" title="(三)、安装PicGo"></a>(三)、安装PicGo</h3><h4 id="安装PicGo"><a href="#安装PicGo" class="headerlink" title="安装PicGo"></a>安装PicGo</h4><h5 id="官网地址：https-picgo-github-io-PicGo-Doc-zh"><a href="#官网地址：https-picgo-github-io-PicGo-Doc-zh" class="headerlink" title="官网地址：https://picgo.github.io/PicGo-Doc/zh/"></a>官网地址：<a target="_blank" rel="noopener" href="https://picgo.github.io/PicGo-Doc/zh/">https://picgo.github.io/PicGo-Doc/zh/</a></h5><h5 id="打开Typora，文件—偏好设置—图像"><a href="#打开Typora，文件—偏好设置—图像" class="headerlink" title="打开Typora，文件—偏好设置—图像"></a>打开Typora，文件—偏好设置—图像</h5><ul>
+<li><p>选择PicGo-Core(command line),选择上传图片，点击下载更新</p>
+<p>  <img src="https://gitee.com/zhanglu68/img-blog/raw/master/imgs/20221020174718.png" alt="typora上传配置"></p>
+</li>
+<li><p>安装完成后，点击验证图片上传选项，找到PicGo的下载路径，验证失败是正常的，因为此时PicGo还未和Gitee关联<br>  <img src="https://gitee.com/zhanglu68/img-blog/raw/master/imgs/20221020175008.png" alt="失败路径"></p>
+</li>
+</ul>
+<blockquote>
+<p>注意此图，请在<code>上图</code>中路径下打开cmd命令行进行安装，否则安装不成功</p>
+</blockquote>
+<ul>
+<li>安装 gitee-uploader，用于支持gitee图床上传</li>
+<li>安装 super-prefix，用于上传图片时能自动使用时间戳重命名<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">.\picgo.exe install gitee-uploader</span><br><span class="line">.\picgo.exe install super-prefix</span><br></pre></td></tr></table></figure>
+<blockquote>
+</blockquote>
+<p>  <img src="https://gitee.com/zhanglu68/img-blog/raw/master/imgs/20221020180015.png" alt="安装插件"></p>
+</li>
+</ul>
+<blockquote>
+<p>我已经安装过配置了gitee所以有错误，按<code>上图</code>将两个插件安装好。</p>
+</blockquote>
+<ul>
+<li>配置PicGo<ul>
+<li><p>配置Gitee为我们所使用的Uploader</p>
+</li>
+<li><p>打开Typora，文件—偏好设置</p>
+</li>
+<li><p>选择打开配置文件</p>
+<p>  <img src="https://gitee.com/zhanglu68/img-blog/raw/master/imgs/20221020180511.png" alt="配置文件"></p>
+</li>
+<li><p>按照下图进行配置</p>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">    </span><br><span class="line">&#123;</span><br><span class="line">  &quot;picBed&quot;: &#123;</span><br><span class="line">    &quot;uploader&quot;: &quot;gitee&quot;, // 代表当前的上传图床</span><br><span class="line">    &quot;current&quot;: &quot;gitee&quot;,</span><br><span class="line">    &quot;gitee&quot;: &#123;</span><br><span class="line">      &quot;repo&quot;: &quot;&quot;, // 仓库名，格式是 username/reponame 必填 (https://gitee.com/username/reponame)</span><br><span class="line">      &quot;token&quot;: &quot;&quot;, // gitee 私人令牌 必填</span><br><span class="line">      &quot;path&quot;: &quot;img/&quot;, // 自定义存储路径，比如 img/ 建议填</span><br><span class="line">      &quot;customUrl&quot;: &quot;&quot;, // 没有自己的域名的话，可以默认为空就行； 如果自定义域名，注意要加http://或者https://，</span><br><span class="line">      &quot;branch&quot;: &quot;master&quot; // 分支名，默认是 master</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;picgoPlugins&quot;: &#123;</span><br><span class="line">    &quot;picgo-plugin-gitee-uploader&quot;: true,</span><br><span class="line">    &quot;picgo-plugin-super-prefix&quot;: true,</span><br><span class="line">    &quot;picgo-plugin-smms-user&quot;: true</span><br><span class="line">  &#125;, // 为插件预留</span><br><span class="line">  &quot;picgo-plugin-super-prefix&quot;: &#123;</span><br><span class="line">    &quot;fileFormat&quot;: &quot;YYYYMMDDHHmmss&quot;</span><br><span class="line">  &#125; //super-prefix插件配置</span><br><span class="line">  ,</span><br><span class="line">  &quot;picgo-plugin-gitee-uploader&quot;: &#123;</span><br><span class="line">    &quot;lastSync&quot;: &quot;2022-03-26 10:11:57&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="四-、验证"><a href="#四-、验证" class="headerlink" title="(四)、验证"></a>(四)、验证</h3><blockquote>
+<p>打开Typora，文件—偏好设置—图像 ,点击验证图片上传选项<br>    <img src="https://gitee.com/zhanglu68/img-blog/raw/master/imgs/20221020181428.png" alt="上传成功"></p>
+</blockquote>
+<blockquote>
+<p>至此typora搭建gitee图床就完成了，这样以后分享的文件，就不需要带有图片文件就可以访问图片了，而且再也不用担心图片丢失了！</p>
 </blockquote>
  
       <!-- reward -->
@@ -217,12 +291,12 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2022/10/17/Github/1-ping%E8%A7%A3%E6%9E%90ip%E9%94%99%E8%AF%AF/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2022/10/20/Typora/1-typora%E5%9B%BE%E5%BA%8A/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>  
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/" rel="tag">github</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Typora/" rel="tag">Typora</a></li></ul>
 
     </footer>
   </div>
@@ -230,19 +304,10 @@
    
   <nav class="article-nav">
     
-      <a href="/2022/10/20/Typora/1-typora%E5%9B%BE%E5%BA%8A/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            Typora &amp; gitee图床
-          
-        </div>
-      </a>
     
-    
-      <a href="/2022/04/12/%E5%BE%AE%E5%89%8D%E7%AB%AF/qiankun%E5%BE%AE%E5%89%8D%E7%AB%AF/" class="article-nav-link">
+      <a href="/2022/10/17/Github/1-ping%E8%A7%A3%E6%9E%90ip%E9%94%99%E8%AF%AF/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">qiankun微前端</div>
+        <div class="article-nav-title">Ping 解析Github地址错误</div>
       </a>
     
   </nav>
