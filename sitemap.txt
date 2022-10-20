@@ -1,4 +1,3 @@
-http://example.com/2022/10/20/Typora/typora%E5%9B%BE%E5%BA%8A/
 http://example.com/2022/10/20/Typora/1-typora%E5%9B%BE%E5%BA%8A/
 http://example.com/2022/10/17/Github/1-ping%E8%A7%A3%E6%9E%90ip%E9%94%99%E8%AF%AF/
 http://example.com/2018/02/07/html+css+js+ts/1-%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D/
