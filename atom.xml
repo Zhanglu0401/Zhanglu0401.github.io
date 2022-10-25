@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2022-10-18T11:20:05.920Z</updated>
+  <updated>2022-10-25T13:42:01.587Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ADB提取boot</title>
+    <link href="http://example.com/2022/10/25/ADB/ADB%E6%8F%90%E5%8F%96boot/"/>
+    <id>http://example.com/2022/10/25/ADB/ADB%E6%8F%90%E5%8F%96boot/</id>
+    <published>2022-10-25T13:24:49.000Z</published>
+    <updated>2022-10-25T13:42:01.587Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="ADB" scheme="http://example.com/categories/ADB/"/>
+    
+    <category term="Android" scheme="http://example.com/categories/ADB/Android/"/>
+    
+    <category term="Root" scheme="http://example.com/categories/ADB/Android/Root/"/>
+    
+    
+    <category term="ADB" scheme="http://example.com/tags/ADB/"/>
+    
+  </entry>
   
   <entry>
     <title>Ping 解析Github地址错误</title>
@@ -490,31 +519,6 @@
     
     
     <category term="async/await" scheme="http://example.com/tags/async-await/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>浏览器渲染原理</title>
-    <link href="http://example.com/2021/05/19/%E6%B5%8F%E8%A7%88%E5%99%A8/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93%E5%8E%9F%E7%90%86/"/>
-    <id>http://example.com/2021/05/19/%E6%B5%8F%E8%A7%88%E5%99%A8/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93%E5%8E%9F%E7%90%86/</id>
-    <published>2021-05-19T06:18:26.000Z</published>
-    <updated>2022-06-07T00:37:52.000Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="浏览器" scheme="http://example.com/categories/%E6%B5%8F%E8%A7%88%E5%99%A8/"/>
-    
-    
-    <category term="浏览器" scheme="http://example.com/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/"/>
     
   </entry>
   

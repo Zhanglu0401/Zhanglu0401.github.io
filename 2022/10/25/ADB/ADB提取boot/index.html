@@ -11,7 +11,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1"
       />
-      <title>归档 |  茶九-Blog</title>
+      <title>ADB提取boot |  茶九-Blog</title>
   <meta name="generator" content="hexo-theme-ayer">
       
       <link rel="shortcut icon" href="/chajiu.ico" />
@@ -75,246 +75,216 @@
       
     <main class="content on">
       <section class="outer">
-  
-  
-  <article class="articles">
+  <article
+  id="post-ADB/ADB提取boot"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
     
-    
-    <h1 class="page-type-title">归档</h1>
-    
-    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  ADB提取boot
+</h1>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2022/10/25/ADB/ADB%E6%8F%90%E5%8F%96boot/" class="article-date">
+  <time datetime="2022-10-25T13:24:49.000Z" itemprop="datePublished">2022-10-25</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/ADB/">ADB</a> / <a class="article-category-link" href="/categories/ADB/Android/">Android</a> / <a class="article-category-link" href="/categories/ADB/Android/Root/">Root</a>
+  </div>
   
-  
-  
-  
-  
-  
-  <div class="archives-wrap">
-    <div class="archive-year-wrap">
-      <a href="/archives/2018" class="archive-year">2018</a>
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">416</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">1 分钟</span>
+        </span>
+    </span>
+</div>
+ 
     </div>
-    <div class="archives">
       
-      <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/03/30/html+css+js+ts/4-es6-%E6%95%B0%E7%BB%84%E6%89%A9%E5%B1%95/" class="archive-article-date">
-  <time datetime="2018-03-30T01:14:49.000Z" itemprop="datePublished">03/30</time>
-</a>
-       
-<h2 itemprop="name">
-  <a class="archive-article-title" href="/2018/03/30/html+css+js+ts/4-es6-%E6%95%B0%E7%BB%84%E6%89%A9%E5%B1%95/"
-    >es6数组扩展</a> 
-</h2>
- 
 
-    </header>
-    
-    
-  </div>
-</article>
-      
-  
-  
-      <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/03/27/html+css+js+ts/4-es6-%E5%87%BD%E6%95%B0%E6%89%A9%E5%B1%95/" class="archive-article-date">
-  <time datetime="2018-03-27T08:28:18.000Z" itemprop="datePublished">03/27</time>
-</a>
-       
-<h2 itemprop="name">
-  <a class="archive-article-title" href="/2018/03/27/html+css+js+ts/4-es6-%E5%87%BD%E6%95%B0%E6%89%A9%E5%B1%95/"
-    >es6函数扩展</a> 
-</h2>
- 
 
-    </header>
-    
-    
-  </div>
-</article>
-      
-  
-  
-      <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/03/25/html+css+js+ts/4-es6-%E5%AF%B9%E8%B1%A1%E6%89%A9%E5%B1%95.md/" class="archive-article-date">
-  <time datetime="2018-03-25T02:23:42.000Z" itemprop="datePublished">03/25</time>
-</a>
-       
-<h2 itemprop="name">
-  <a class="archive-article-title" href="/2018/03/25/html+css+js+ts/4-es6-%E5%AF%B9%E8%B1%A1%E6%89%A9%E5%B1%95.md/"
-    >es6对象扩展</a> 
-</h2>
- 
 
-    </header>
-    
-    
-  </div>
-</article>
-      
   
-  
-      <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/03/23/html+css+js+ts/4-es6/" class="archive-article-date">
-  <time datetime="2018-03-23T07:26:54.000Z" itemprop="datePublished">03/23</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
        
-<h2 itemprop="name">
-  <a class="archive-article-title" href="/2018/03/23/html+css+js+ts/4-es6/"
-    >ES 2015~2019</a> 
-</h2>
+  <h1 id="一、电脑使用ADB命令提取boot-img文件"><a href="#一、电脑使用ADB命令提取boot-img文件" class="headerlink" title="一、电脑使用ADB命令提取boot.img文件"></a>一、电脑使用ADB命令提取boot.img文件</h1><h2 id="1-1-ADB-介绍"><a href="#1-1-ADB-介绍" class="headerlink" title="1.1 ADB 介绍"></a>1.1 ADB 介绍</h2><blockquote>
+<p> <code>adb</code>的全称为<code>Android Debug Bridge</code>，就是起到调试桥的作用。通过adb我们可以在Eclipse中方便通过DDMS来调试Android程序，说白了就是debug工具。</p>
+</blockquote>
+<h3 id="提取流程"><a href="#提取流程" class="headerlink" title="提取流程"></a><strong>提取流程</strong></h3><blockquote>
+<p>首先确保我们的设备是<code>Root后</code>的一个状态才可以进行boot的提取 </p>
+</blockquote>
+<h3 id="步骤："><a href="#步骤：" class="headerlink" title="步骤："></a>步骤：</h3><ul>
+<li><p>首先我们将手机进入开发者模式，将我们的USB调试打开</p>
+</li>
+<li><p>将电脑上的adb命令窗口打开</p>
+</li>
+<li><p>输入 adb devices  检查设备是否连接</p>
+<p>  <img src="https://zl-blog.oss-cn-hangzhou.aliyuncs.com/img/20221025212558.png" alt="image-20221025212556669"></p>
+</li>
+<li><p>进入shell模式</p>
+<p>  <img src="https://zl-blog.oss-cn-hangzhou.aliyuncs.com/img/20221025212706.png" alt="image-20221025212706000"></p>
+</li>
+<li><p>我们需要申请root权限，否则可能会因为文件不可读写，而导致无法提取boot内核</p>
+<ul>
+<li><p>输入 su 获取权限</p>
+<p><img src="https://zl-blog.oss-cn-hangzhou.aliyuncs.com/img/20221025212849.png" alt="image-20221025212848948"></p>
+</li>
+</ul>
+</li>
+<li><p>我们首先要查找内核分区所在位置，先查找快捷方式，我们进入&#x2F;dev&#x2F;block目录下by-name文件夹：</p>
+<ul>
+<li><p>cd &#x2F;dev&#x2F;block&#x2F;by-name</p>
+<p><img src="https://zl-blog.oss-cn-hangzhou.aliyuncs.com/img/20221025212958.png" alt="image-20221025212957115"></p>
+</li>
+</ul>
+</li>
+<li><p>输入ls 查找当前文件夹列表找到 <code>boot</code> 文件或者<code>AB分区后</code>的<code>boot_a</code> 或 <code>boot_b</code></p>
+<p><img src="https://zl-blog.oss-cn-hangzhou.aliyuncs.com/img/20221025213045.png" alt="image-20221025213044543"></p>
+</li>
+<li><p>查找boot真实地址  输入   ls -l <code>boot文件名</code></p>
+<p>  <img src="https://zl-blog.oss-cn-hangzhou.aliyuncs.com/img/20221025213351.png" alt="image-20221025213350594"></p>
+</li>
+<li><p>最后，因为我们boot地址为&#x2F;dev&#x2F;block&#x2F;sde11，所以我们使用以下 dd 命令提取保存即可：</p>
+<ul>
+<li><p>dd if&#x3D;&#x2F;dev&#x2F;block&#x2F;sde11 of&#x3D;&#x2F;sdcard&#x2F;boot.img</p>
+<p><img src="https://zl-blog.oss-cn-hangzhou.aliyuncs.com/img/20221025213605.png" alt="image-20221025213604373"></p>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>如果我们在转出boot时出现  <code>/dev/block/sde11: Permission denied</code>  这代表adb没有获取到手机root权限</p>
+</blockquote>
+<p>  ​	<img src="https://zl-blog.oss-cn-hangzhou.aliyuncs.com/img/20221025213908.png" alt="image-20221025213907837"></p>
+<blockquote>
+<p>我们只需要在magisk中超级用户给shell获取权限，就可以重新执行- dd if&#x3D;&#x2F;dev&#x2F;block&#x2F;sde11 of&#x3D;&#x2F;sdcard&#x2F;boot.img进行提取了，这时候我们打开手机存储<code>/sdcard/boot.img</code>就可以看到我们的boot.img包了</p>
+</blockquote>
  
-
-    </header>
-    
-    
-  </div>
-</article>
+      <!-- reward -->
       
-  
-  
-      <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/03/20/html+css+js+ts/4-asyncawait/" class="archive-article-date">
-  <time datetime="2018-03-20T01:21:42.000Z" itemprop="datePublished">03/20</time>
-</a>
-       
-<h2 itemprop="name">
-  <a class="archive-article-title" href="/2018/03/20/html+css+js+ts/4-asyncawait/"
-    >ES async/await</a> 
-</h2>
- 
-
-    </header>
-    
-    
-  </div>
-</article>
-      
-  
-  
-      <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/03/18/html+css+js+ts/3-%E5%8E%9F%E5%9E%8B%E9%93%BE/" class="archive-article-date">
-  <time datetime="2018-03-18T12:16:43.000Z" itemprop="datePublished">03/18</time>
-</a>
-       
-<h2 itemprop="name">
-  <a class="archive-article-title" href="/2018/03/18/html+css+js+ts/3-%E5%8E%9F%E5%9E%8B%E9%93%BE/"
-    >js-原型链</a> 
-</h2>
- 
-
-    </header>
-    
-    
-  </div>
-</article>
-      
-  
-  
-      <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/03/16/html+css+js+ts/3-%E5%BC%82%E6%AD%A5-axios/" class="archive-article-date">
-  <time datetime="2018-03-16T12:46:35.000Z" itemprop="datePublished">03/16</time>
-</a>
-       
-<h2 itemprop="name">
-  <a class="archive-article-title" href="/2018/03/16/html+css+js+ts/3-%E5%BC%82%E6%AD%A5-axios/"
-    >异步-axios</a> 
-</h2>
- 
-
-    </header>
-    
-    
-  </div>
-</article>
-      
-  
-  
-      <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/03/13/html+css+js+ts/3-Promise.allrace/" class="archive-article-date">
-  <time datetime="2018-03-13T07:38:46.000Z" itemprop="datePublished">03/13</time>
-</a>
-       
-<h2 itemprop="name">
-  <a class="archive-article-title" href="/2018/03/13/html+css+js+ts/3-Promise.allrace/"
-    >ES Promise.all/race</a> 
-</h2>
- 
-
-    </header>
-    
-    
-  </div>
-</article>
-      
-  
-  
-      <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/03/11/html+css+js+ts/3-js%E4%BD%9C%E7%94%A8%E5%9F%9F/" class="archive-article-date">
-  <time datetime="2018-03-11T12:48:25.000Z" itemprop="datePublished">03/11</time>
-</a>
-       
-<h2 itemprop="name">
-  <a class="archive-article-title" href="/2018/03/11/html+css+js+ts/3-js%E4%BD%9C%E7%94%A8%E5%9F%9F/"
-    >js 作用域</a> 
-</h2>
- 
-
-    </header>
-    
-    
-  </div>
-</article>
-      
-  
-  
-      <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/03/08/html+css+js+ts/3-js-%E5%8E%9F%E7%94%9FJS%E4%B8%8EjQuery%E6%93%8D%E4%BD%9CDOM%E5%AF%B9%E6%AF%94/" class="archive-article-date">
-  <time datetime="2018-03-07T22:46:34.000Z" itemprop="datePublished">03/08</time>
-</a>
-       
-<h2 itemprop="name">
-  <a class="archive-article-title" href="/2018/03/08/html+css+js+ts/3-js-%E5%8E%9F%E7%94%9FJS%E4%B8%8EjQuery%E6%93%8D%E4%BD%9CDOM%E5%AF%B9%E6%AF%94/"
-    >js 原生js与jquery操作dom的对比</a> 
-</h2>
- 
-
-    </header>
-    
-    
-  </div>
-</article>
-      
+      <div id="reword-out">
+        <div id="reward-btn">
+          打赏
+        </div>
+      </div>
       
     </div>
-  </div>
-  
-  
-
-  
-  <nav class="page-nav">
     
-    <a class="extend prev" rel="prev" href="/archives/page/20/">上一页</a><a class="page-number" href="/archives/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/19/">19</a><a class="page-number" href="/archives/page/20/">20</a><span class="page-number current">21</span><a class="page-number" href="/archives/page/22/">22</a><a class="page-number" href="/archives/page/23/">23</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/25/">25</a><a class="extend next" rel="next" href="/archives/page/22/">下一页</a>
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>版权声明： </strong>
+          
+          本博客所有文章除特别声明外，著作权归作者所有。转载请注明出处！
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2022/10/25/ADB/ADB%E6%8F%90%E5%8F%96boot/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ADB/" rel="tag">ADB</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+    
+      <a href="/2022/10/17/Github/1-ping%E8%A7%A3%E6%9E%90ip%E9%94%99%E8%AF%AF/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">Ping 解析Github地址错误</div>
+      </a>
+    
   </nav>
+
   
+   
+    
+    <script src="https://cdn.staticfile.org/twikoo/1.4.18/twikoo.all.min.js"></script>
+    <div id="twikoo" class="twikoo"></div>
+    <script>
+        twikoo.init({
+            envId: ""
+        })
+    </script>
+ 
+</article>
+
 </section>
       <footer class="footer">
   <div class="outer">
@@ -441,6 +411,22 @@
 <script src="/js/lazyload.min.js"></script>
 
 <!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
 
 <script src="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.js"></script>
 <link
